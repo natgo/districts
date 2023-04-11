@@ -1,0 +1,7 @@
+public
+
+cypress/*
+!cypress/e2e/*
+
+package.json
+pnpm-lock.yaml
