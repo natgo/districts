@@ -41,7 +41,7 @@ export default function MapPage() {
       minZoom: 10,
       attribution:
         // eslint-disable-next-line quotes
-        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a><br/>Data <a href="https://creativecommons.org/licenses/by/4.0/">CC-by</a> Helsingin kaupunki, kaupunkimittauspalvelut.',
     }).addTo(newMap);
 
     setMap(newMap);
