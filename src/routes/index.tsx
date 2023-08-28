@@ -8,7 +8,7 @@ export default function Home() {
         <span>Home</span>
         {" - "}
         <A href="/map" class="text-sky-600 hover:underline">
-          Map Page
+          Map
         </A>{" "}
       </p>
     </main>

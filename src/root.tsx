@@ -14,6 +14,7 @@ import {
   useLocation,
 } from "solid-start";
 
+import IsRouting from "./components/IsRouting";
 import "./root.css";
 
 export default function Root() {
@@ -28,6 +29,7 @@ export default function Root() {
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Body class="flex h-screen w-screen flex-col">
+        <IsRouting />
         <Suspense>
           <ErrorBoundary>
             <nav class="bg-sky-800">
