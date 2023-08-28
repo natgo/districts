@@ -65,7 +65,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -191,7 +191,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -399,7 +399,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -447,7 +447,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -501,7 +501,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -550,7 +550,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -605,7 +605,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -836,7 +836,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -932,7 +932,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -988,7 +988,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -1020,7 +1020,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -1144,7 +1144,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -1214,7 +1214,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -1336,7 +1336,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -1379,9 +1379,13 @@
             [25.14598779, 60.20603789],
             [25.14588123, 60.20600728],
             [25.1462096, 60.2056089],
-            [25.14923212, 60.20654677],
-            [25.14915985, 60.20661156],
-            [25.14950802, 60.20665482],
+            [25.1481005, 60.20619851],
+            [25.14730557, 60.20684205],
+            [25.146894, 60.20675562],
+            [25.14683657, 60.20681744],
+            [25.14681275, 60.20697544],
+            [25.14687962, 60.20708738],
+            [25.14672209, 60.20735036],
             [25.14913444, 60.20742023],
             [25.15304614, 60.20789731],
             [25.15325895, 60.20827436],
@@ -1526,7 +1530,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -1599,7 +1603,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -1692,7 +1696,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -1852,7 +1856,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -1911,7 +1915,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -1973,7 +1977,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -2029,7 +2033,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -2091,7 +2095,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -2141,9 +2145,14 @@
             [25.15325895, 60.20827436],
             [25.15304614, 60.20789731],
             [25.14913444, 60.20742023],
-            [25.14950802, 60.20665482],
-            [25.14915985, 60.20661156],
-            [25.14923212, 60.20654677],
+            [25.14672209, 60.20735036],
+            [25.14687962, 60.20708738],
+            [25.14681275, 60.20697544],
+            [25.14683657, 60.20681744],
+            [25.146894, 60.20675562],
+            [25.14730557, 60.20684205],
+            [25.1481005, 60.20619851],
+            [25.1481005, 60.20619851],
             [25.1462096, 60.2056089],
             [25.14588123, 60.20600728],
             [25.14598779, 60.20603789],
@@ -2175,7 +2184,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -2246,7 +2255,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -2455,7 +2464,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -2540,7 +2549,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -2682,7 +2691,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -2757,7 +2766,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -2922,7 +2931,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -3014,7 +3023,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -3152,7 +3161,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -3309,7 +3318,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -3788,7 +3797,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -3828,7 +3837,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -3981,7 +3990,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -4273,7 +4282,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -4319,7 +4328,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -4371,7 +4380,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -4465,7 +4474,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -4544,7 +4553,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -4653,7 +4662,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -4792,7 +4801,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -4841,7 +4850,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -4922,7 +4931,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -4974,7 +4983,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -5233,7 +5242,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -5292,7 +5301,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -5333,7 +5342,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -5447,7 +5456,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -5487,7 +5496,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -5570,7 +5579,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -5768,7 +5777,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -5935,7 +5944,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -6010,7 +6019,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -6090,7 +6099,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -6204,7 +6213,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -6250,7 +6259,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -6323,7 +6332,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -6369,7 +6378,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -6489,7 +6498,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -6559,7 +6568,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -6605,7 +6614,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -6713,7 +6722,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -6905,7 +6914,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -6979,7 +6988,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -7045,7 +7054,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -7183,7 +7192,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -7249,7 +7258,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -7589,7 +7598,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -7675,7 +7684,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -7757,7 +7766,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -7936,7 +7945,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -7984,7 +7993,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -8048,7 +8057,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -8114,7 +8123,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -8215,7 +8224,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -8309,7 +8318,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -8341,7 +8350,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -8650,7 +8659,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -8708,7 +8717,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -8783,7 +8792,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -8858,7 +8867,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -8920,7 +8929,7 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     },
     {
@@ -9021,13 +9030,13 @@
         "toimipiste_id": null,
         "yhtluontipvm": "2010-07-22",
         "yhtdatanomistaja": "Helsinki/Kami",
-        "paivitetty_tietopalveluun": "2023-03-31"
+        "paivitetty_tietopalveluun": "2023-08-25"
       }
     }
   ],
   "totalFeatures": 84,
   "numberMatched": 84,
   "numberReturned": 84,
-  "timeStamp": "2023-04-01T13:11:37.419Z",
+  "timeStamp": "2023-08-28T21:59:34.251Z",
   "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::4326" } }
 }
