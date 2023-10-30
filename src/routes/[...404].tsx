@@ -13,8 +13,8 @@ export default function NotFound() {
           Home
         </A>
         {" - "}
-        <A href="/map" class="text-sky-600 hover:underline">
-          Map
+        <A href="/explore" class="text-sky-600 hover:underline">
+          Explore
         </A>
       </p>
     </main>

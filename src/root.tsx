@@ -37,8 +37,8 @@ export default function Root() {
                 <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`}>
                   <A href="/">Home</A>
                 </li>
-                <li class={`border-b-2 ${active("/map")} mx-1.5 sm:mx-6`}>
-                  <A href="/map">Map</A>
+                <li class={`border-b-2 ${active("/explore")} mx-1.5 sm:mx-6`}>
+                  <A href="/explore">Explore</A>
                 </li>
               </ul>
             </nav>
