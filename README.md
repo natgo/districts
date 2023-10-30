@@ -1,8 +1,8 @@
-# Kaupunginosat
+# City districts game
 
 Powered by [`solid-start`](https://start.solidjs.com)
 
-Data [CC-by](https://creativecommons.org/licenses/by/4.0/) Helsingin kaupunki, kaupunkimittauspalvelut.
+Data [CC-by](https://creativecommons.org/licenses/by/4.0/) City of Helsinki, City Survey Services.
 
 ## Developing
 
