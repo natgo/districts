@@ -1,5 +1,5 @@
 {
-  "name": "kaupunginosat",
+  "name": "districts",
   "browserslist": "> 0.5% and last 2 versions and supports es6-module",
   "license": "AGPL-3.0-only",
   "scripts": {
@@ -32,7 +32,7 @@
     "@solidjs/meta": "0.28.6",
     "@solidjs/router": "0.8.3",
     "leaflet": "1.9.4",
-    "solid-js": "1.8.3",
+    "solid-js": "1.8.4",
     "solid-start": "0.3.8"
   }
 }
