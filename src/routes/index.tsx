@@ -113,6 +113,7 @@ export default function MapPage() {
                     });
                     if (features().length === 1) {
                       setFeatures((prevFeatures) => prevFeatures.slice(1));
+                      incrementCorrect();
                       setWin(true);
                       return;
                     }
