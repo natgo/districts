@@ -19,7 +19,7 @@ const [wrong, setWrong] = createSignal<Properties[]>([]);
 const [correct, setCorrect] = createSignal({ correct: 0, wrong: 0 });
 const [status, setStatus] = createSignal(false);
 const [win, setWin] = createSignal(false);
-const [currText, setCurrText] = createSignal("");
+const [currText, setCurrText] = createSignal(1);
 
 export function incrementCorrect() {
   setCorrect((prevValue) => {

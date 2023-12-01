@@ -6,12 +6,14 @@ import "leaflet/dist/leaflet.css";
 import CurrentText from "~/components/CurrentText";
 import {
   correct,
+  currText,
   current,
   features,
   geo,
   guessed,
   incrementCorrect,
   incrementWrong,
+  setCurrText,
   setCurrent,
   setFeatures,
   setGuessed,
@@ -30,7 +32,7 @@ export default function MapPage() {
   const [type, setType] = createSignal<Types>("kaupunginosat");
 
   const layerGroup = new L.LayerGroup();
-  let geolayer: L.GeoJSON<any, GeoJSON.GeometryObject>;
+  let geoLayer: L.GeoJSON<any, GeoJSON.GeometryObject>;
 
   createEffect(() => {
     const mapDiv = document.getElementById("main-map") as HTMLDivElement;
@@ -86,20 +88,20 @@ export default function MapPage() {
           onClick={() => {
             if (status()) {
               cleanGame();
-              layerGroup.removeLayer(geolayer);
+              layerGroup.removeLayer(geoLayer);
             } else {
               createNewGame(type());
-              geolayer = L.geoJSON(geo(), {
+              geoLayer = L.geoJSON(geo(), {
                 style: {
                   color: "#0000ff",
                   fillOpacity: 0,
                   opacity: 0.7,
                 },
               });
-              layerGroup.addLayer(geolayer);
+              layerGroup.addLayer(geoLayer);
               layerGroup.addTo(map());
 
-              geolayer.eachLayer((layer) => {
+              geoLayer.eachLayer((layer) => {
                 layer.on("click", (event) => {
                   const feature = signleFeature.parse(event.target.feature);
 
@@ -118,7 +120,7 @@ export default function MapPage() {
                       return;
                     }
 
-                    geolayer.eachLayer((element) => {
+                    geoLayer.eachLayer((element) => {
                       const feature = signleFeature.parse(element.feature);
 
                       wrong().forEach((wrongElement) => {
@@ -136,6 +138,7 @@ export default function MapPage() {
                     setCurrent(() => features()[0].properties);
                     setGuessed((prevGuessed) => [...prevGuessed, feature.properties]);
                     incrementCorrect();
+                    setCurrText(1);
                     setWrong(() => []);
                   } else {
                     layer.setStyle({
@@ -150,6 +153,7 @@ export default function MapPage() {
                       })
                     ) {
                       incrementWrong();
+                      setCurrText((prevCount) => prevCount + 1);
                     }
 
                     setWrong((prevWrong) => [...prevWrong, feature.properties]);

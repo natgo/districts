@@ -23,7 +23,12 @@ export default function CurrentText() {
             return postinumeroalueProperties.parse(current()).tunnus;
           } else if (current()?.aluejako === "halke_aanestysalue") {
             const parsed = vaalipiiriProperties.parse(current());
-            return `${currText()} ${parsed.topParty.party} ${parsed.topParty.count.toFixed(1)}%`;
+            return (
+              <>
+                <div>{`${parsed.nimi_fi.substring(0, currText())}`}</div>
+                <div>{`${parsed.topParty.party} ${parsed.topParty.count.toFixed(1)}%`}</div>
+              </>
+            );
           } else {
             return normalProperties.parse(current()).nimi_fi;
           }
