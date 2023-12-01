@@ -82,7 +82,7 @@ const parties = [
   "VL",
   "Muut",
 ];
-const districtsCounts: { distric: string; parties: { party: string; count: number }[] }[] = [];
+const districtsCounts: { district: string; parties: { party: string; count: number }[] }[] = [];
 districts.forEach((districtElement) => {
   const districtCount: { party: string; count: number }[] = [];
   parties.forEach((partyElement) => {
@@ -94,7 +94,7 @@ districts.forEach((districtElement) => {
     });
     districtCount.push({ party: partyElement, count: partyCount });
   });
-  districtsCounts.push({ distric: districtElement.tunnus, parties: districtCount });
+  districtsCounts.push({ district: districtElement.tunnus, parties: districtCount });
 });
 
 const topParties: { district: string; top: { party: string; count: number } }[] = [];
@@ -102,7 +102,7 @@ districtsCounts.forEach((element) => {
   const sorted = element.parties.toSorted((a, b) => {
     return b.count - a.count;
   });
-  topParties.push({ district: element.distric, top: sorted[0] });
+  topParties.push({ district: element.district, top: sorted[0] });
 });
 
 console.log(topParties);

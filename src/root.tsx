@@ -28,11 +28,11 @@ export default function Root() {
         <Meta charset="utf-8" />
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Body class="flex h-screen w-screen flex-col">
+      <Body class="h-screen w-screen">
         <IsRouting />
         <Suspense>
           <ErrorBoundary>
-            <nav class="bg-sky-800">
+            <nav class="absolute z-[1000] h-[50px] w-full bg-[#0a1e3c] bg-opacity-80">
               <ul class="container flex items-center p-3 text-gray-200">
                 <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`}>
                   <A href="/">Home</A>

@@ -1,0 +1,1157 @@
+[
+  {
+    "district": "001A",
+    "top": {
+      "party": "KOK",
+      "count": 41.6
+    }
+  },
+  {
+    "district": "002A",
+    "top": {
+      "party": "KOK",
+      "count": 37.800000000000004
+    }
+  },
+  {
+    "district": "003A",
+    "top": {
+      "party": "KOK",
+      "count": 53.50000000000001
+    }
+  },
+  {
+    "district": "004A",
+    "top": {
+      "party": "KOK",
+      "count": 43.8
+    }
+  },
+  {
+    "district": "004B",
+    "top": {
+      "party": "KOK",
+      "count": 41.6
+    }
+  },
+  {
+    "district": "004C",
+    "top": {
+      "party": "KOK",
+      "count": 35.4
+    }
+  },
+  {
+    "district": "005A",
+    "top": {
+      "party": "KOK",
+      "count": 37.599999999999994
+    }
+  },
+  {
+    "district": "005B",
+    "top": {
+      "party": "KOK",
+      "count": 38.8
+    }
+  },
+  {
+    "district": "005C",
+    "top": {
+      "party": "KOK",
+      "count": 44.1
+    }
+  },
+  {
+    "district": "006A",
+    "top": {
+      "party": "KOK",
+      "count": 24.300000000000004
+    }
+  },
+  {
+    "district": "006B",
+    "top": {
+      "party": "KOK",
+      "count": 33.5
+    }
+  },
+  {
+    "district": "006C",
+    "top": {
+      "party": "KOK",
+      "count": 30.8
+    }
+  },
+  {
+    "district": "006D",
+    "top": {
+      "party": "KOK",
+      "count": 27.499999999999996
+    }
+  },
+  {
+    "district": "007A",
+    "top": {
+      "party": "KOK",
+      "count": 44
+    }
+  },
+  {
+    "district": "007B",
+    "top": {
+      "party": "KOK",
+      "count": 44.49999999999999
+    }
+  },
+  {
+    "district": "008A",
+    "top": {
+      "party": "KOK",
+      "count": 40.3
+    }
+  },
+  {
+    "district": "010A",
+    "top": {
+      "party": "VAS",
+      "count": 24.400000000000002
+    }
+  },
+  {
+    "district": "010B",
+    "top": {
+      "party": "SDP",
+      "count": 26.599999999999994
+    }
+  },
+  {
+    "district": "010C",
+    "top": {
+      "party": "KOK",
+      "count": 32.3
+    }
+  },
+  {
+    "district": "010D",
+    "top": {
+      "party": "KOK",
+      "count": 34.4
+    }
+  },
+  {
+    "district": "011A",
+    "top": {
+      "party": "KOK",
+      "count": 23.3
+    }
+  },
+  {
+    "district": "011B",
+    "top": {
+      "party": "VAS",
+      "count": 22.400000000000002
+    }
+  },
+  {
+    "district": "011C",
+    "top": {
+      "party": "VAS",
+      "count": 22.5
+    }
+  },
+  {
+    "district": "011D",
+    "top": {
+      "party": "VAS",
+      "count": 26.000000000000004
+    }
+  },
+  {
+    "district": "011E",
+    "top": {
+      "party": "VAS",
+      "count": 27.499999999999996
+    }
+  },
+  {
+    "district": "012A",
+    "top": {
+      "party": "VAS",
+      "count": 27.6
+    }
+  },
+  {
+    "district": "012B",
+    "top": {
+      "party": "VAS",
+      "count": 25.5
+    }
+  },
+  {
+    "district": "012C",
+    "top": {
+      "party": "VAS",
+      "count": 24
+    }
+  },
+  {
+    "district": "012D",
+    "top": {
+      "party": "KOK",
+      "count": 27.599999999999998
+    }
+  },
+  {
+    "district": "013A",
+    "top": {
+      "party": "KOK",
+      "count": 47.7
+    }
+  },
+  {
+    "district": "013B",
+    "top": {
+      "party": "KOK",
+      "count": 38.4
+    }
+  },
+  {
+    "district": "013C",
+    "top": {
+      "party": "KOK",
+      "count": 42.49999999999999
+    }
+  },
+  {
+    "district": "013D",
+    "top": {
+      "party": "KOK",
+      "count": 39
+    }
+  },
+  {
+    "district": "014A",
+    "top": {
+      "party": "KOK",
+      "count": 37
+    }
+  },
+  {
+    "district": "014B",
+    "top": {
+      "party": "KOK",
+      "count": 45.900000000000006
+    }
+  },
+  {
+    "district": "014C",
+    "top": {
+      "party": "KOK",
+      "count": 30.900000000000002
+    }
+  },
+  {
+    "district": "014D",
+    "top": {
+      "party": "KOK",
+      "count": 35.1
+    }
+  },
+  {
+    "district": "015A",
+    "top": {
+      "party": "KOK",
+      "count": 31.099999999999998
+    }
+  },
+  {
+    "district": "015B",
+    "top": {
+      "party": "KOK",
+      "count": 25.700000000000003
+    }
+  },
+  {
+    "district": "016A",
+    "top": {
+      "party": "KOK",
+      "count": 22.8
+    }
+  },
+  {
+    "district": "016B",
+    "top": {
+      "party": "SDP",
+      "count": 25.199999999999996
+    }
+  },
+  {
+    "district": "017A",
+    "top": {
+      "party": "SDP",
+      "count": 21.500000000000007
+    }
+  },
+  {
+    "district": "017B",
+    "top": {
+      "party": "SDP",
+      "count": 26.3
+    }
+  },
+  {
+    "district": "017C",
+    "top": {
+      "party": "KOK",
+      "count": 28
+    }
+  },
+  {
+    "district": "017D",
+    "top": {
+      "party": "KOK",
+      "count": 23.700000000000003
+    }
+  },
+  {
+    "district": "021A",
+    "top": {
+      "party": "SDP",
+      "count": 24.6
+    }
+  },
+  {
+    "district": "021B",
+    "top": {
+      "party": "VAS",
+      "count": 24.7
+    }
+  },
+  {
+    "district": "022A",
+    "top": {
+      "party": "VAS",
+      "count": 27.400000000000006
+    }
+  },
+  {
+    "district": "022B",
+    "top": {
+      "party": "VAS",
+      "count": 25.900000000000002
+    }
+  },
+  {
+    "district": "023A",
+    "top": {
+      "party": "SDP",
+      "count": 21.900000000000002
+    }
+  },
+  {
+    "district": "023B",
+    "top": {
+      "party": "KOK",
+      "count": 25.499999999999993
+    }
+  },
+  {
+    "district": "024A",
+    "top": {
+      "party": "VAS",
+      "count": 28.199999999999996
+    }
+  },
+  {
+    "district": "025A",
+    "top": {
+      "party": "SDP",
+      "count": 25.500000000000004
+    }
+  },
+  {
+    "district": "025B",
+    "top": {
+      "party": "SDP",
+      "count": 26.5
+    }
+  },
+  {
+    "district": "026A",
+    "top": {
+      "party": "SDP",
+      "count": 26.2
+    }
+  },
+  {
+    "district": "028A",
+    "top": {
+      "party": "SDP",
+      "count": 25.299999999999997
+    }
+  },
+  {
+    "district": "028B",
+    "top": {
+      "party": "SDP",
+      "count": 25.299999999999997
+    }
+  },
+  {
+    "district": "028D",
+    "top": {
+      "party": "SDP",
+      "count": 26.4
+    }
+  },
+  {
+    "district": "028E",
+    "top": {
+      "party": "KOK",
+      "count": 29.1
+    }
+  },
+  {
+    "district": "028F",
+    "top": {
+      "party": "KOK",
+      "count": 26.900000000000002
+    }
+  },
+  {
+    "district": "028G",
+    "top": {
+      "party": "KOK",
+      "count": 26.299999999999997
+    }
+  },
+  {
+    "district": "029A",
+    "top": {
+      "party": "KOK",
+      "count": 24.400000000000002
+    }
+  },
+  {
+    "district": "029B",
+    "top": {
+      "party": "KOK",
+      "count": 26.9
+    }
+  },
+  {
+    "district": "029C",
+    "top": {
+      "party": "KOK",
+      "count": 24.3
+    }
+  },
+  {
+    "district": "029D",
+    "top": {
+      "party": "KOK",
+      "count": 27.8
+    }
+  },
+  {
+    "district": "029E",
+    "top": {
+      "party": "SDP",
+      "count": 24.299999999999997
+    }
+  },
+  {
+    "district": "029F",
+    "top": {
+      "party": "SDP",
+      "count": 24.000000000000004
+    }
+  },
+  {
+    "district": "029G",
+    "top": {
+      "party": "KOK",
+      "count": 23.5
+    }
+  },
+  {
+    "district": "029H",
+    "top": {
+      "party": "KOK",
+      "count": 22.5
+    }
+  },
+  {
+    "district": "030A",
+    "top": {
+      "party": "KOK",
+      "count": 47.8
+    }
+  },
+  {
+    "district": "030B",
+    "top": {
+      "party": "KOK",
+      "count": 50.50000000000001
+    }
+  },
+  {
+    "district": "030C",
+    "top": {
+      "party": "KOK",
+      "count": 41.9
+    }
+  },
+  {
+    "district": "030D",
+    "top": {
+      "party": "KOK",
+      "count": 29.500000000000004
+    }
+  },
+  {
+    "district": "030E",
+    "top": {
+      "party": "KOK",
+      "count": 31
+    }
+  },
+  {
+    "district": "031A",
+    "top": {
+      "party": "KOK",
+      "count": 41.300000000000004
+    }
+  },
+  {
+    "district": "031B",
+    "top": {
+      "party": "KOK",
+      "count": 39.300000000000004
+    }
+  },
+  {
+    "district": "031C",
+    "top": {
+      "party": "KOK",
+      "count": 38.099999999999994
+    }
+  },
+  {
+    "district": "031D",
+    "top": {
+      "party": "KOK",
+      "count": 36.1
+    }
+  },
+  {
+    "district": "031E",
+    "top": {
+      "party": "KOK",
+      "count": 51.7
+    }
+  },
+  {
+    "district": "031F",
+    "top": {
+      "party": "KOK",
+      "count": 46.4
+    }
+  },
+  {
+    "district": "032A",
+    "top": {
+      "party": "KOK",
+      "count": 23.999999999999993
+    }
+  },
+  {
+    "district": "032B",
+    "top": {
+      "party": "KOK",
+      "count": 25.5
+    }
+  },
+  {
+    "district": "033A",
+    "top": {
+      "party": "SDP",
+      "count": 30.200000000000003
+    }
+  },
+  {
+    "district": "033B",
+    "top": {
+      "party": "SDP",
+      "count": 26.700000000000003
+    }
+  },
+  {
+    "district": "033C",
+    "top": {
+      "party": "SDP",
+      "count": 25.699999999999992
+    }
+  },
+  {
+    "district": "033E",
+    "top": {
+      "party": "KOK",
+      "count": 34
+    }
+  },
+  {
+    "district": "033F",
+    "top": {
+      "party": "SDP",
+      "count": 26.000000000000007
+    }
+  },
+  {
+    "district": "033G",
+    "top": {
+      "party": "SDP",
+      "count": 26
+    }
+  },
+  {
+    "district": "033H",
+    "top": {
+      "party": "KOK",
+      "count": 28.000000000000004
+    }
+  },
+  {
+    "district": "034A",
+    "top": {
+      "party": "KOK",
+      "count": 43.4
+    }
+  },
+  {
+    "district": "034B",
+    "top": {
+      "party": "KOK",
+      "count": 43.1
+    }
+  },
+  {
+    "district": "034C",
+    "top": {
+      "party": "KOK",
+      "count": 41.4
+    }
+  },
+  {
+    "district": "035A",
+    "top": {
+      "party": "KOK",
+      "count": 44.49999999999999
+    }
+  },
+  {
+    "district": "035B",
+    "top": {
+      "party": "KOK",
+      "count": 36.2
+    }
+  },
+  {
+    "district": "036A",
+    "top": {
+      "party": "SDP",
+      "count": 23.599999999999998
+    }
+  },
+  {
+    "district": "036B",
+    "top": {
+      "party": "SDP",
+      "count": 23.899999999999995
+    }
+  },
+  {
+    "district": "036C",
+    "top": {
+      "party": "SDP",
+      "count": 23.1
+    }
+  },
+  {
+    "district": "036D",
+    "top": {
+      "party": "KOK",
+      "count": 26.199999999999996
+    }
+  },
+  {
+    "district": "037A",
+    "top": {
+      "party": "SDP",
+      "count": 26.200000000000003
+    }
+  },
+  {
+    "district": "037B",
+    "top": {
+      "party": "SDP",
+      "count": 28.500000000000004
+    }
+  },
+  {
+    "district": "038A",
+    "top": {
+      "party": "SDP",
+      "count": 33
+    }
+  },
+  {
+    "district": "038B",
+    "top": {
+      "party": "SDP",
+      "count": 29.300000000000004
+    }
+  },
+  {
+    "district": "038C",
+    "top": {
+      "party": "SDP",
+      "count": 28.9
+    }
+  },
+  {
+    "district": "038D",
+    "top": {
+      "party": "SDP",
+      "count": 28.6
+    }
+  },
+  {
+    "district": "038E",
+    "top": {
+      "party": "SDP",
+      "count": 25.900000000000002
+    }
+  },
+  {
+    "district": "038F",
+    "top": {
+      "party": "SDP",
+      "count": 31.7
+    }
+  },
+  {
+    "district": "038G",
+    "top": {
+      "party": "SDP",
+      "count": 28.099999999999994
+    }
+  },
+  {
+    "district": "039A",
+    "top": {
+      "party": "KOK",
+      "count": 35.5
+    }
+  },
+  {
+    "district": "039B",
+    "top": {
+      "party": "KOK",
+      "count": 29.099999999999998
+    }
+  },
+  {
+    "district": "039C",
+    "top": {
+      "party": "SDP",
+      "count": 23.5
+    }
+  },
+  {
+    "district": "039D",
+    "top": {
+      "party": "SDP",
+      "count": 29.2
+    }
+  },
+  {
+    "district": "040A",
+    "top": {
+      "party": "SDP",
+      "count": 24.800000000000004
+    }
+  },
+  {
+    "district": "040B",
+    "top": {
+      "party": "SDP",
+      "count": 26.200000000000003
+    }
+  },
+  {
+    "district": "040C",
+    "top": {
+      "party": "SDP",
+      "count": 24.7
+    }
+  },
+  {
+    "district": "040D",
+    "top": {
+      "party": "SDP",
+      "count": 25.600000000000005
+    }
+  },
+  {
+    "district": "040E",
+    "top": {
+      "party": "SDP",
+      "count": 26.1
+    }
+  },
+  {
+    "district": "041A",
+    "top": {
+      "party": "KOK",
+      "count": 29.599999999999998
+    }
+  },
+  {
+    "district": "041B",
+    "top": {
+      "party": "KOK",
+      "count": 28.3
+    }
+  },
+  {
+    "district": "041C",
+    "top": {
+      "party": "PS",
+      "count": 25.8
+    }
+  },
+  {
+    "district": "041D",
+    "top": {
+      "party": "SDP",
+      "count": 30.79999999999999
+    }
+  },
+  {
+    "district": "042A",
+    "top": {
+      "party": "KOK",
+      "count": 39.99999999999999
+    }
+  },
+  {
+    "district": "043A",
+    "top": {
+      "party": "VIHR",
+      "count": 23.9
+    }
+  },
+  {
+    "district": "043B",
+    "top": {
+      "party": "SDP",
+      "count": 26.800000000000004
+    }
+  },
+  {
+    "district": "043C",
+    "top": {
+      "party": "SDP",
+      "count": 20.6
+    }
+  },
+  {
+    "district": "043D",
+    "top": {
+      "party": "SDP",
+      "count": 27.900000000000002
+    }
+  },
+  {
+    "district": "043E",
+    "top": {
+      "party": "SDP",
+      "count": 24.999999999999996
+    }
+  },
+  {
+    "district": "043F",
+    "top": {
+      "party": "SDP",
+      "count": 29.200000000000006
+    }
+  },
+  {
+    "district": "043G",
+    "top": {
+      "party": "KOK",
+      "count": 25.6
+    }
+  },
+  {
+    "district": "044A",
+    "top": {
+      "party": "KOK",
+      "count": 49.99999999999999
+    }
+  },
+  {
+    "district": "045A",
+    "top": {
+      "party": "KOK",
+      "count": 29.200000000000003
+    }
+  },
+  {
+    "district": "045B",
+    "top": {
+      "party": "KOK",
+      "count": 23.1
+    }
+  },
+  {
+    "district": "045C",
+    "top": {
+      "party": "SDP",
+      "count": 26.900000000000002
+    }
+  },
+  {
+    "district": "045D",
+    "top": {
+      "party": "SDP",
+      "count": 28.900000000000002
+    }
+  },
+  {
+    "district": "045E",
+    "top": {
+      "party": "SDP",
+      "count": 30.400000000000002
+    }
+  },
+  {
+    "district": "045F",
+    "top": {
+      "party": "SDP",
+      "count": 27.799999999999997
+    }
+  },
+  {
+    "district": "045G",
+    "top": {
+      "party": "SDP",
+      "count": 25.900000000000006
+    }
+  },
+  {
+    "district": "045H",
+    "top": {
+      "party": "KOK",
+      "count": 34.2
+    }
+  },
+  {
+    "district": "046A",
+    "top": {
+      "party": "KOK",
+      "count": 26.200000000000003
+    }
+  },
+  {
+    "district": "046B",
+    "top": {
+      "party": "KOK",
+      "count": 24.1
+    }
+  },
+  {
+    "district": "046C",
+    "top": {
+      "party": "SDP",
+      "count": 22.8
+    }
+  },
+  {
+    "district": "047A",
+    "top": {
+      "party": "SDP",
+      "count": 29.000000000000004
+    }
+  },
+  {
+    "district": "047B",
+    "top": {
+      "party": "SDP",
+      "count": 30.400000000000002
+    }
+  },
+  {
+    "district": "047C",
+    "top": {
+      "party": "SDP",
+      "count": 32.1
+    }
+  },
+  {
+    "district": "047D",
+    "top": {
+      "party": "SDP",
+      "count": 29.10000000000001
+    }
+  },
+  {
+    "district": "047E",
+    "top": {
+      "party": "SDP",
+      "count": 29.200000000000003
+    }
+  },
+  {
+    "district": "047F",
+    "top": {
+      "party": "SDP",
+      "count": 29.900000000000006
+    }
+  },
+  {
+    "district": "047G",
+    "top": {
+      "party": "SDP",
+      "count": 28.200000000000006
+    }
+  },
+  {
+    "district": "047H",
+    "top": {
+      "party": "SDP",
+      "count": 32.89999999999999
+    }
+  },
+  {
+    "district": "047J",
+    "top": {
+      "party": "SDP",
+      "count": 27.700000000000003
+    }
+  },
+  {
+    "district": "049A",
+    "top": {
+      "party": "KOK",
+      "count": 25.5
+    }
+  },
+  {
+    "district": "049B",
+    "top": {
+      "party": "SDP",
+      "count": 22.100000000000005
+    }
+  },
+  {
+    "district": "049C",
+    "top": {
+      "party": "KOK",
+      "count": 32
+    }
+  },
+  {
+    "district": "049D",
+    "top": {
+      "party": "KOK",
+      "count": 40.89999999999999
+    }
+  },
+  {
+    "district": "049E",
+    "top": {
+      "party": "KOK",
+      "count": 30.200000000000003
+    }
+  },
+  {
+    "district": "052A",
+    "top": {
+      "party": "SDP",
+      "count": 28.299999999999997
+    }
+  },
+  {
+    "district": "054A",
+    "top": {
+      "party": "SDP",
+      "count": 28.3
+    }
+  },
+  {
+    "district": "054B",
+    "top": {
+      "party": "SDP",
+      "count": 32.89999999999999
+    }
+  },
+  {
+    "district": "054C",
+    "top": {
+      "party": "SDP",
+      "count": 31.000000000000004
+    }
+  },
+  {
+    "district": "054D",
+    "top": {
+      "party": "KOK",
+      "count": 29.799999999999997
+    }
+  },
+  {
+    "district": "054E",
+    "top": {
+      "party": "SDP",
+      "count": 27.7
+    }
+  },
+  {
+    "district": "054F",
+    "top": {
+      "party": "SDP",
+      "count": 31.6
+    }
+  },
+  {
+    "district": "054G",
+    "top": {
+      "party": "SDP",
+      "count": 27.2
+    }
+  },
+  {
+    "district": "054H",
+    "top": {
+      "party": "SDP",
+      "count": 31.200000000000003
+    }
+  },
+  {
+    "district": "054J",
+    "top": {
+      "party": "SDP",
+      "count": 25.2
+    }
+  },
+  {
+    "district": "055A",
+    "top": {
+      "party": "KOK",
+      "count": 40.5
+    }
+  }
+]

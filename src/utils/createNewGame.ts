@@ -4,6 +4,7 @@ import peruspiirit from "~/assets/peruspiirit.json";
 import pienalueet from "~/assets/pienalueet.json";
 import postinumerot from "~/assets/postinumerot.json";
 import suurpiirit from "~/assets/suurpiirit.json";
+import topParties from "~/assets/topParties.json";
 import vaalipiirit from "~/assets/vaalialueet.json";
 import { geo, setCurrent, setFeatures, setGeo, setGuessed, setStatus, setWrong } from "~/store/map";
 
@@ -33,6 +34,11 @@ export function createNewGame(type: Types) {
       setGeo(geoSchema.parse(suurpiirit));
       break;
     case "vaalipiirit":
+      vaalipiirit.features.forEach((element) => {
+        element.properties.topParty = topParties.find((value) => {
+          return element.properties.tunnus === value.district;
+        })?.top;
+      });
       setGeo(geoSchema.parse(vaalipiirit));
       break;
   }

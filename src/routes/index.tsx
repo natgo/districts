@@ -34,7 +34,7 @@ export default function MapPage() {
 
   createEffect(() => {
     const mapDiv = document.getElementById("main-map") as HTMLDivElement;
-    const newMap = L.map(mapDiv).setView([60.1667, 25], 11);
+    const newMap = L.map(mapDiv, { zoomControl: false }).setView([60.1667, 25], 11);
 
     L.tileLayer("https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}@2x.png", {
       maxZoom: 19,
@@ -48,17 +48,18 @@ export default function MapPage() {
   });
 
   return (
-    <main class="mx-auto flex h-full w-full p-4 text-center text-gray-700">
-      <div class=" h-full w-full">
+    <main class="mx-auto flex h-full w-full text-center text-gray-700">
+      <div class="h-full w-full">
         <div id="main-map" class="h-full" />
       </div>
 
-      <div class="mx-5 my-3 w-1/6">
+      <div class="fixed bottom-28 right-0 top-28 z-[1000] m-5 w-1/6 rounded-3xl bg-white p-5">
+        <h1 class="text-2xl font-bold">Single-player</h1>
         <label
           for="type"
           class={status() ? "hidden" : "mb-2 block text-sm font-medium text-gray-900"}
         >
-          Select gamemode
+          Select game mode
         </label>
         <select
           id="type"

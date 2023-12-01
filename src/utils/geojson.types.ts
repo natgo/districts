@@ -40,6 +40,7 @@ export const vaalipiiriProperties = baseProperties.extend({
   nimi_fi: z.string(),
   nimi_se: z.string().nullable(),
   toimipiste_id: z.number().nullable(),
+  topParty: z.object({ party: z.string(), count: z.number() }),
 });
 
 export const properties = z.union([

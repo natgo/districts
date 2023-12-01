@@ -1,4 +1,4 @@
-import { current, win } from "~/store/map";
+import { currText, current, win } from "~/store/map";
 import {
   normalProperties,
   pienalueProperties,
@@ -22,7 +22,8 @@ export default function CurrentText() {
           } else if (current()?.aluejako === "postinumeroalue") {
             return postinumeroalueProperties.parse(current()).tunnus;
           } else if (current()?.aluejako === "halke_aanestysalue") {
-            return vaalipiiriProperties.parse(current()).nimi_fi;
+            const parsed = vaalipiiriProperties.parse(current());
+            return `${currText()} ${parsed.topParty.party} ${parsed.topParty.count.toFixed(1)}%`;
           } else {
             return normalProperties.parse(current()).nimi_fi;
           }
