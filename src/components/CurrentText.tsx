@@ -3,6 +3,7 @@ import {
   normalProperties,
   pienalueProperties,
   postinumeroalueProperties,
+  vaalipiiriProperties,
 } from "~/utils/geojson.types";
 
 export default function CurrentText() {
@@ -20,6 +21,8 @@ export default function CurrentText() {
             }`;
           } else if (current()?.aluejako === "postinumeroalue") {
             return postinumeroalueProperties.parse(current()).tunnus;
+          } else if (current()?.aluejako === "halke_aanestysalue") {
+            return vaalipiiriProperties.parse(current()).nimi_fi;
           } else {
             return normalProperties.parse(current()).nimi_fi;
           }

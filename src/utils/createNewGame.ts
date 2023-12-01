@@ -4,6 +4,7 @@ import peruspiirit from "~/assets/peruspiirit.json";
 import pienalueet from "~/assets/pienalueet.json";
 import postinumerot from "~/assets/postinumerot.json";
 import suurpiirit from "~/assets/suurpiirit.json";
+import vaalipiirit from "~/assets/vaalialueet.json";
 import { geo, setCurrent, setFeatures, setGeo, setGuessed, setStatus, setWrong } from "~/store/map";
 
 import { geoSchema } from "./geojson.types";
@@ -30,6 +31,9 @@ export function createNewGame(type: Types) {
       break;
     case "suurpiirit":
       setGeo(geoSchema.parse(suurpiirit));
+      break;
+    case "vaalipiirit":
+      setGeo(geoSchema.parse(vaalipiirit));
       break;
   }
 

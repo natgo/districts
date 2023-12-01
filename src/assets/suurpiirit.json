@@ -577,7 +577,7 @@
         "yhtmuokkauspvm": "2015-11-06",
         "yhtdatanomistaja": "kmo",
         "kokotunnus": "0917000000",
-        "paivitetty_tietopalveluun": "2023-08-25",
+        "paivitetty_tietopalveluun": "2023-11-10",
         "datanomistaja": "Helsinki/Kami"
       }
     },
@@ -793,7 +793,7 @@
         "yhtmuokkauspvm": null,
         "yhtdatanomistaja": null,
         "kokotunnus": "0911000000",
-        "paivitetty_tietopalveluun": "2023-08-25",
+        "paivitetty_tietopalveluun": "2023-11-10",
         "datanomistaja": "Helsinki/Kami"
       }
     },
@@ -1460,7 +1460,7 @@
         "yhtmuokkauspvm": null,
         "yhtdatanomistaja": null,
         "kokotunnus": "0912000000",
-        "paivitetty_tietopalveluun": "2023-08-25",
+        "paivitetty_tietopalveluun": "2023-11-10",
         "datanomistaja": "Helsinki/Kami"
       }
     },
@@ -1658,7 +1658,7 @@
         "yhtmuokkauspvm": null,
         "yhtdatanomistaja": null,
         "kokotunnus": "0916000000",
-        "paivitetty_tietopalveluun": "2023-08-25",
+        "paivitetty_tietopalveluun": "2023-11-10",
         "datanomistaja": "Helsinki/Kami"
       }
     },
@@ -2004,7 +2004,7 @@
         "yhtmuokkauspvm": "2021-11-11",
         "yhtdatanomistaja": null,
         "kokotunnus": "0913000000",
-        "paivitetty_tietopalveluun": "2023-08-25",
+        "paivitetty_tietopalveluun": "2023-11-10",
         "datanomistaja": "Helsinki/Kami"
       }
     },
@@ -2626,7 +2626,7 @@
         "yhtmuokkauspvm": "2021-01-14",
         "yhtdatanomistaja": null,
         "kokotunnus": "0914000000",
-        "paivitetty_tietopalveluun": "2023-08-25",
+        "paivitetty_tietopalveluun": "2023-11-10",
         "datanomistaja": "Helsinki/Kami"
       }
     },
@@ -3740,7 +3740,7 @@
         "yhtmuokkauspvm": null,
         "yhtdatanomistaja": null,
         "kokotunnus": "0915000000",
-        "paivitetty_tietopalveluun": "2023-08-25",
+        "paivitetty_tietopalveluun": "2023-11-10",
         "datanomistaja": "Helsinki/Kami"
       }
     },
@@ -4238,7 +4238,7 @@
         "yhtmuokkauspvm": "2015-11-06",
         "yhtdatanomistaja": "kmo",
         "kokotunnus": "0918000000",
-        "paivitetty_tietopalveluun": "2023-08-25",
+        "paivitetty_tietopalveluun": "2023-11-10",
         "datanomistaja": "Helsinki/Kami"
       }
     }
@@ -4246,6 +4246,6 @@
   "totalFeatures": 8,
   "numberMatched": 8,
   "numberReturned": 8,
-  "timeStamp": "2023-08-28T21:59:29.849Z",
+  "timeStamp": "2023-11-30T07:39:07.903Z",
   "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::4326" } }
 }

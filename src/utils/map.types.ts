@@ -7,5 +7,6 @@ export const types = z.enum([
   "peruspiirit",
   "suurpiirit",
   "postinumerot",
+  "vaalipiirit",
 ]);
 export type Types = z.infer<typeof types>;

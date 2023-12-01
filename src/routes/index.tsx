@@ -78,6 +78,7 @@ export default function MapPage() {
           <option value="peruspiirit">Peruspiirit</option>
           <option value="suurpiirit">Suurpiirit</option>
           <option value="postinumerot">Postinumeroalueet</option>
+          <option value="vaalipiirit">Vaalipiirit</option>
         </select>
         <CurrentText />
         <button

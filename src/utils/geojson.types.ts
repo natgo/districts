@@ -35,10 +35,18 @@ export const normalProperties = baseProperties.extend({
   nimi_se: z.string(),
 });
 
+export const vaalipiiriProperties = baseProperties.extend({
+  aluejako: z.literal("halke_aanestysalue"),
+  nimi_fi: z.string(),
+  nimi_se: z.string().nullable(),
+  toimipiste_id: z.number().nullable(),
+});
+
 export const properties = z.union([
   normalProperties,
   pienalueProperties,
   postinumeroalueProperties,
+  vaalipiiriProperties,
 ]);
 export type Properties = z.infer<typeof properties>;
 
