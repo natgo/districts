@@ -1,6 +1,5 @@
+import { type Properties, geoSchema } from "@/utils/types/geojson.types";
 import fs from "fs";
-
-import { Properties, geoSchema } from "~/utils/geojson.types";
 
 import halke from "./stat.fi.halke.json";
 import { StatFiSchema } from "./statFi.types";

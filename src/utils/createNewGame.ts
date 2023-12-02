@@ -1,16 +1,16 @@
-import kaupunginosat from "~/assets/kaupunginosat.json";
-import osaalueet from "~/assets/osaalueet.json";
-import peruspiirit from "~/assets/peruspiirit.json";
-import pienalueet from "~/assets/pienalueet.json";
-import postinumerot from "~/assets/postinumerot.json";
-import suurpiirit from "~/assets/suurpiirit.json";
-import topParties from "~/assets/topParties.json";
-import vaalipiirit from "~/assets/vaalialueet.json";
-import { geo, setCurrent, setFeatures, setGeo, setGuessed, setStatus, setWrong } from "~/store/map";
+import kaupunginosat from "@/assets/kaupunginosat.json";
+import osaalueet from "@/assets/osaalueet.json";
+import peruspiirit from "@/assets/peruspiirit.json";
+import pienalueet from "@/assets/pienalueet.json";
+import postinumerot from "@/assets/postinumerot.json";
+import suurpiirit from "@/assets/suurpiirit.json";
+import topParties from "@/assets/topParties.json";
+import vaalipiirit from "@/assets/vaalialueet.json";
+import { geo, setCurrent, setFeatures, setGeo, setGuessed, setStatus, setWrong } from "@/store/map";
 
-import { geoSchema } from "./geojson.types";
-import { Types } from "./map.types";
 import shuffle from "./shuffle";
+import { geoSchema } from "./types/geojson.types";
+import type { Types } from "./types/map.types";
 
 export function createNewGame(type: Types) {
   setStatus(true);
@@ -46,7 +46,7 @@ export function createNewGame(type: Types) {
   const shuffled = shuffle(geo().features);
   setFeatures(shuffled);
 
-  setCurrent(shuffled[0].properties);
+  setCurrent(shuffled[0]?.properties);
   setGuessed([]);
   setWrong([]);
 }

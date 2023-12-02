@@ -1,10 +1,11 @@
-import { currText, current, win } from "~/store/map";
+/** @jsxImportSource solid-js */
+import { currText, current, win } from "@/store/map";
 import {
   normalProperties,
   pienalueProperties,
   postinumeroalueProperties,
   vaalipiiriProperties,
-} from "~/utils/geojson.types";
+} from "@/utils/types/geojson.types";
 
 export default function CurrentText() {
   return (

@@ -1,6 +1,7 @@
+/** @jsxImportSource solid-js */
 import { createSignal } from "solid-js";
 
-export default function Explore() {
+export function ExplorePage() {
   const [disabled, setDisabled] = createSignal(false);
   return (
     <main class="mx-auto flex flex-col items-center p-4 text-center text-gray-700">

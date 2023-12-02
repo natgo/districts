@@ -1,17 +1,17 @@
-import { Accessor, createSignal } from "solid-js";
+/** @jsxImportSource solid-js */
+import { type Accessor, createSignal } from "solid-js";
 
+import CurrentText from "@/components/solid/CurrentText";
+import { correct, geo, status } from "@/store/map";
+import { cleanGame } from "@/utils/cleanGame";
+import { createNewGame } from "@/utils/createNewGame";
+import { layerHook } from "@/utils/layerHook";
+import { type Types, types } from "@/utils/types/map.types";
 import L from "leaflet";
-
-import CurrentText from "~/components/CurrentText";
-import { correct, geo, status } from "~/store/map";
-import { cleanGame } from "~/utils/cleanGame";
-import { createNewGame } from "~/utils/createNewGame";
-import { layerHook } from "~/utils/layerHook";
-import { Types, types } from "~/utils/map.types";
 
 export function FloatingBox(props: { map: Accessor<L.Map | undefined> }) {
   const [type, setType] = createSignal<Types>("kaupunginosat");
-  let geoLayer: L.GeoJSON<any, GeoJSON.GeometryObject>;
+  let geoLayer: L.GeoJSON<any, L.GeoJSON.GeometryObject>;
   const layerGroup = new L.LayerGroup();
 
   const [player, setPlayer] = createSignal<"single" | "multi">();

@@ -1,9 +1,9 @@
+/** @jsxImportSource solid-js */
 import { createEffect, createSignal } from "solid-js";
 
+import { FloatingBox } from "@/components/solid/FloatingBox";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-
-import { FloatingBox } from "~/components/FloatingBox";
 
 export default function MapPage() {
   const [map, setMap] = createSignal<L.Map>();

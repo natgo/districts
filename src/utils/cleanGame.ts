@@ -6,7 +6,7 @@ import {
   setStatus,
   setWin,
   setWrong,
-} from "~/store/map";
+} from "@/store/map";
 
 export function cleanGame() {
   setFeatures([]);

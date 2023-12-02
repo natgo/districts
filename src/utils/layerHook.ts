@@ -1,9 +1,6 @@
 import {
-  correct,
-  currText,
   current,
   features,
-  geo,
   guessed,
   incrementCorrect,
   incrementWrong,
@@ -13,11 +10,10 @@ import {
   setGuessed,
   setWin,
   setWrong,
-  status,
   wrong,
-} from "~/store/map";
+} from "@/store/map";
 
-import { signleFeature } from "./geojson.types";
+import { signleFeature } from "./types/geojson.types";
 
 export function layerHook(geoLayer: L.GeoJSON<any, GeoJSON.GeometryObject>) {
   geoLayer.eachLayer((layer) => {
@@ -54,7 +50,7 @@ export function layerHook(geoLayer: L.GeoJSON<any, GeoJSON.GeometryObject>) {
         });
 
         setFeatures((prevFeatures) => prevFeatures.slice(1));
-        setCurrent(() => features()[0].properties);
+        setCurrent(() => features()[0]?.properties);
         setGuessed((prevGuessed) => [...prevGuessed, feature.properties]);
         incrementCorrect();
         setCurrText(1);

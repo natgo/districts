@@ -17,7 +17,19 @@ const config = {
   importOrderGroupNamespaceSpecifiers: true,
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
-  plugins: ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
+  plugins: [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-astro",
+    "prettier-plugin-tailwindcss"
+  ],
+  overrides: [
+    {
+      files: "*.astro",
+      options: {
+        parser: "astro"
+      }
+    }
+  ]
 };
 
 export default config;

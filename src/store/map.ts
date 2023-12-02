@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js";
 
-import { GeoSchema, Properties, SignleFeature } from "~/utils/geojson.types";
+import type { GeoSchema, Properties, SignleFeature } from "@/utils/types/geojson.types";
 
 const [geo, setGeo] = createSignal<GeoSchema>({
   type: "FeatureCollection",

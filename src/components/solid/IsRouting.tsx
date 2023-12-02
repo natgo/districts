@@ -1,6 +1,5 @@
-import { useIsRouting } from "solid-start";
-
-import "./Routing.modules.css";
+/** @jsxImportSource solid-js */
+import "./IsRouting.modules.css";
 
 export default function IsRouting() {
   const isRouting = useIsRouting();
