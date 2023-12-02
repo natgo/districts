@@ -11,16 +11,19 @@ export default function CurrentText() {
     <div class="mb-2 text-3xl font-bold">
       {() => {
         if (win()) {
-          return "Voitit pelin";
+          return <>Voitit pelin</>;
         }
 
         if (current()) {
           if (current()?.aluejako === "PIENALUE") {
-            return `${pienalueProperties.parse(current()).osaalue_nimi_fi} ${
-              pienalueProperties.parse(current()).tunnus
-            }`;
+            return (
+              <>
+                {pienalueProperties.parse(current()).osaalue_nimi_fi}{" "}
+                {pienalueProperties.parse(current()).tunnus}
+              </>
+            );
           } else if (current()?.aluejako === "postinumeroalue") {
-            return postinumeroalueProperties.parse(current()).tunnus;
+            return <>{postinumeroalueProperties.parse(current()).tunnus}</>;
           } else if (current()?.aluejako === "halke_aanestysalue") {
             const parsed = vaalipiiriProperties.parse(current());
             return (
@@ -30,10 +33,10 @@ export default function CurrentText() {
               </>
             );
           } else {
-            return normalProperties.parse(current()).nimi_fi;
+            return <>{normalProperties.parse(current()).nimi_fi}</>;
           }
         }
-        return "";
+        return <></>;
       }}
     </div>
   );
