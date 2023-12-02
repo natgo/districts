@@ -3,36 +3,10 @@ import { createEffect, createSignal } from "solid-js";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-import CurrentText from "~/components/CurrentText";
-import {
-  correct,
-  currText,
-  current,
-  features,
-  geo,
-  guessed,
-  incrementCorrect,
-  incrementWrong,
-  setCurrText,
-  setCurrent,
-  setFeatures,
-  setGuessed,
-  setWin,
-  setWrong,
-  status,
-  wrong,
-} from "~/store/map";
-import { cleanGame } from "~/utils/cleanGame";
-import { createNewGame } from "~/utils/createNewGame";
-import { signleFeature } from "~/utils/geojson.types";
-import { Types, types } from "~/utils/map.types";
+import { FloatingBox } from "~/components/FloatingBox";
 
 export default function MapPage() {
   const [map, setMap] = createSignal<L.Map>();
-  const [type, setType] = createSignal<Types>("kaupunginosat");
-
-  const layerGroup = new L.LayerGroup();
-  let geoLayer: L.GeoJSON<any, GeoJSON.GeometryObject>;
 
   createEffect(() => {
     const mapDiv = document.getElementById("main-map") as HTMLDivElement;
@@ -55,121 +29,7 @@ export default function MapPage() {
         <div id="main-map" class="h-full" />
       </div>
 
-      <div class="fixed bottom-28 right-0 top-28 z-[1000] m-5 w-1/6 rounded-3xl bg-white p-5">
-        <h1 class="text-2xl font-bold">Single-player</h1>
-        <label
-          for="type"
-          class={status() ? "hidden" : "mb-2 block text-sm font-medium text-gray-900"}
-        >
-          Select game mode
-        </label>
-        <select
-          id="type"
-          onChange={(event) => {
-            setType(types.parse(event.target.value));
-          }}
-          value={type()}
-          class={
-            status()
-              ? "hidden"
-              : "mb-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-          }
-        >
-          <option value="kaupunginosat">Kaupunginosat</option>
-          <option value="osaalueet">Osa-alueet</option>
-          <option value="pienalueet">Pienalueet</option>
-          <option value="peruspiirit">Peruspiirit</option>
-          <option value="suurpiirit">Suurpiirit</option>
-          <option value="postinumerot">Postinumeroalueet</option>
-          <option value="vaalipiirit">Vaalipiirit</option>
-        </select>
-        <CurrentText />
-        <button
-          onClick={() => {
-            if (status()) {
-              cleanGame();
-              layerGroup.removeLayer(geoLayer);
-            } else {
-              createNewGame(type());
-              geoLayer = L.geoJSON(geo(), {
-                style: {
-                  color: "#0000ff",
-                  fillOpacity: 0,
-                  opacity: 0.7,
-                },
-              });
-              layerGroup.addLayer(geoLayer);
-              layerGroup.addTo(map());
-
-              geoLayer.eachLayer((layer) => {
-                layer.on("click", (event) => {
-                  const feature = signleFeature.parse(event.target.feature);
-
-                  if (guessed().find((element) => element.id === feature.properties.id)) {
-                    console.log("already correct");
-                  } else if (feature.properties.id === current()?.id) {
-                    layer.setStyle({
-                      color: "#00ff00",
-                      fillOpacity: 0.4,
-                      opacity: 0.5,
-                    });
-                    if (features().length === 1) {
-                      setFeatures((prevFeatures) => prevFeatures.slice(1));
-                      incrementCorrect();
-                      setWin(true);
-                      return;
-                    }
-
-                    geoLayer.eachLayer((element) => {
-                      const feature = signleFeature.parse(element.feature);
-
-                      wrong().forEach((wrongElement) => {
-                        if (feature.properties.id === wrongElement.id) {
-                          element.setStyle({
-                            color: "#0000ff",
-                            fillOpacity: 0,
-                            opacity: 0.7,
-                          });
-                        }
-                      });
-                    });
-
-                    setFeatures((prevFeatures) => prevFeatures.slice(1));
-                    setCurrent(() => features()[0].properties);
-                    setGuessed((prevGuessed) => [...prevGuessed, feature.properties]);
-                    incrementCorrect();
-                    setCurrText(1);
-                    setWrong(() => []);
-                  } else {
-                    layer.setStyle({
-                      color: "#ff0000",
-                      fillOpacity: 0.4,
-                      opacity: 0.5,
-                    });
-
-                    if (
-                      !wrong().find((element) => {
-                        return element.id === feature.properties.id;
-                      })
-                    ) {
-                      incrementWrong();
-                      setCurrText((prevCount) => prevCount + 1);
-                    }
-
-                    setWrong((prevWrong) => [...prevWrong, feature.properties]);
-                  }
-                });
-              });
-            }
-          }}
-          class="rounded bg-sky-500 px-2 py-1 font-bold text-white hover:bg-sky-700"
-        >
-          {status() ? "End game" : "Start game"}
-        </button>
-        <div class={status() ? "" : "hidden"}>
-          <span>Correct: {correct().correct}</span> <span>Wrong: {correct().wrong}</span>
-        </div>
-      </div>
+      <FloatingBox map={map} />
     </main>
   );
 }
