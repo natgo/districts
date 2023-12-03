@@ -6,6 +6,7 @@ const config = {
   singleQuote: false,
   printWidth: 100,
   trailingComma: "all",
+  endOfLine: "lf",
   importOrder: [
     "^(^solid-js|solid-start$)",
     "^@mui/(.*)$",
@@ -20,16 +21,16 @@ const config = {
   plugins: [
     "@trivago/prettier-plugin-sort-imports",
     "prettier-plugin-astro",
-    "prettier-plugin-tailwindcss"
+    "prettier-plugin-tailwindcss",
   ],
   overrides: [
     {
       files: "*.astro",
       options: {
-        parser: "astro"
-      }
-    }
-  ]
+        parser: "astro",
+      },
+    },
+  ],
 };
 
 export default config;
