@@ -13,6 +13,7 @@
     "editor.acceptSuggestionOnEnter": "off",
     "terminal.integrated.shellIntegration.enabled": true,
     "typescript.updateImportsOnFileMove.enabled": "always",
-    "files.eol": "\n"
+    "files.eol": "\n",
+    "editor.formatOnSave": true
   }
 }

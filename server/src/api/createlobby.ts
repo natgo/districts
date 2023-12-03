@@ -1,4 +1,4 @@
-import type { UserSchema } from "@/backend/db";
+import type { UserSchema } from "../backend/db";
 import type { APIRoute } from "astro";
 import { z } from "zod";
 
@@ -14,6 +14,9 @@ export const POST: APIRoute = async ({ request }) => {
   const responseBody = JSON.stringify(Math.round(Math.random() * 1000000));
   const response = new Response(responseBody);
 
-  response.headers.append("Set-Cookie", `sessionID=${user.sessionID}; HttpOnly; Path=/`);
+  response.headers.append(
+    "Set-Cookie",
+    `sessionID=${user.sessionID}; HttpOnly; Path=/`
+  );
   return response;
 };

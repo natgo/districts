@@ -48,14 +48,14 @@ export function FloatingBox(props: { map: Accessor<L.Map | undefined> }) {
         </select>
         <CurrentText />
         <button
-          onClick={() => {
+          onClick={async () => {
             if (status()) {
               setPlayer();
               cleanGame();
               layerGroup.removeLayer(geoLayer);
             } else {
               setPlayer("single");
-              createNewGame(type());
+              await createNewGame(type());
               geoLayer = L.geoJSON(geo(), {
                 style: {
                   color: "#0000ff",
@@ -81,14 +81,14 @@ export function FloatingBox(props: { map: Accessor<L.Map | undefined> }) {
       <div class={player() === "single" ? "hidden" : "flex flex-col items-center gap-2"}>
         <h1 class="mb-4 text-2xl font-bold">Multi-player</h1>
         <button
-          onClick={() => {
+          onClick={async () => {
             if (status()) {
               setPlayer();
               cleanGame();
               layerGroup.removeLayer(geoLayer);
             } else {
               setPlayer("multi");
-              createNewGame(type());
+              await createNewGame(type());
               geoLayer = L.geoJSON(geo(), {
                 style: {
                   color: "#0000ff",
@@ -119,14 +119,14 @@ export function FloatingBox(props: { map: Accessor<L.Map | undefined> }) {
           class="focus:shadow-outline appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
         />
         <button
-          onClick={() => {
+          onClick={async () => {
             if (status()) {
               setPlayer();
               cleanGame();
               layerGroup.removeLayer(geoLayer);
             } else {
               setPlayer("multi");
-              createNewGame(type());
+              await createNewGame(type());
               geoLayer = L.geoJSON(geo(), {
                 style: {
                   color: "#0000ff",

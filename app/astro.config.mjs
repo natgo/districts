@@ -1,12 +1,12 @@
-import node from "@astrojs/node";
 import react from "@astrojs/react";
 import solidJs from "@astrojs/solid-js";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
+import { visualizer } from "rollup-plugin-visualizer";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "hybrid",
+  output: "static",
   integrations: [
     tailwind({
       applyBaseStyles: false,
@@ -18,7 +18,5 @@ export default defineConfig({
       include: ["**/solid/*"],
     }),
   ],
-  adapter: node({
-    mode: "standalone",
-  }),
+  vite: { plugins: [visualizer({ gzipSize: true, brotliSize: true })] },
 });

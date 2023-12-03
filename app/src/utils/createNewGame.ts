@@ -1,37 +1,46 @@
-import kaupunginosat from "@/assets/kaupunginosat.json";
-import osaalueet from "@/assets/osaalueet.json";
-import peruspiirit from "@/assets/peruspiirit.json";
-import pienalueet from "@/assets/pienalueet.json";
-import postinumerot from "@/assets/postinumerot.json";
-import suurpiirit from "@/assets/suurpiirit.json";
 import topParties from "@/assets/topParties.json";
-import vaalipiirit from "@/assets/vaalialueet.json";
 import { geo, setCurrent, setFeatures, setGeo, setGuessed, setStatus, setWrong } from "@/store/map";
 
 import shuffle from "./shuffle";
 import { geoSchema } from "./types/geojson.types";
 import type { Types } from "./types/map.types";
 
-export function createNewGame(type: Types) {
+const vaalipiirit = await import("@/assets/vaalialueet.json");
+
+export async function createNewGame(type: Types) {
   setStatus(true);
+
+  // Loading state
+  setCurrent({
+    id: 0,
+    kunta: "",
+    tunnus: "",
+    yhtluontipvm: "",
+    yhtdatanomistaja: "",
+    paivitetty_tietopalveluun: "",
+    aluejako: "KAUPUNGINOSA",
+    nimi_fi: "Loading...",
+    nimi_se: "",
+  });
+
   switch (type) {
     case "kaupunginosat":
-      setGeo(geoSchema.parse(kaupunginosat));
+      setGeo(geoSchema.parse(await import("@/assets/kaupunginosat.json")));
       break;
     case "osaalueet":
-      setGeo(geoSchema.parse(osaalueet));
+      setGeo(geoSchema.parse(await import("@/assets/osaalueet.json")));
       break;
     case "peruspiirit":
-      setGeo(geoSchema.parse(peruspiirit));
+      setGeo(geoSchema.parse(await import("@/assets/peruspiirit.json")));
       break;
     case "pienalueet":
-      setGeo(geoSchema.parse(pienalueet));
+      setGeo(geoSchema.parse(await import("@/assets/pienalueet.json")));
       break;
     case "postinumerot":
-      setGeo(geoSchema.parse(postinumerot));
+      setGeo(geoSchema.parse(await import("@/assets/postinumerot.json")));
       break;
     case "suurpiirit":
-      setGeo(geoSchema.parse(suurpiirit));
+      setGeo(geoSchema.parse(await import("@/assets/suurpiirit.json")));
       break;
     case "vaalipiirit":
       vaalipiirit.features.forEach((element) => {
