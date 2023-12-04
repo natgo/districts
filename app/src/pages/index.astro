@@ -1,8 +1,31 @@
 ---
-import MapPage from "@/components/solid/Index";
-import Layout from "../layouts/Layout.astro";
+import { ExplorePage } from "@/components/solid/Explore";
+import { Lobby } from "@/components/solid/Lobby";
+import Home from "@/layouts/Home.astro";
+import Layout from "@/layouts/Layout.astro";
+import { GitHubLogoIcon } from '@radix-ui/react-icons'
+import '@fontsource-variable/outfit';
 ---
 
-<Layout title="Kaupunginosapeli">
-  <MapPage client:only="solid" />
-</Layout>
+<Home title="Kaupunginosapeli">
+  <video autoplay muted loop id="taustavideo" class=" w-full -z-50 absolute">
+    <source src="taustavideo.mp4" type="video/mp4">
+  </video>
+  <div class=" p-[12px] absolute">
+      <a href="https://github.com/natgo/districts" target="_blank">
+        <GitHubLogoIcon className="w-[60px] h-[60px] bg-white rounded-full"/>
+      </a>
+  </div>
+  <div class="w-full h-full grid place-items-center">
+    <div class=" font-outfit flex flex-col items-center">
+      <h1 class="text-8xl font-normal text-white drop-shadow-[0_10px_10px_rgba(0,0,0,1)]">
+        Kaupunginosapeli
+      </h1>
+      <div class=" flex gap-20 mt-10 items-center text-2xl text-white p-4 ">
+        <a href="./map"><button class="bg-black p-4 rounded-full w-32 bg-opacity-70">Single</button></a>
+        <a href=""><button class="bg-black p-4 rounded-full w-32 bg-opacity-70">Multi</button></a>
+        <a href="./explore"><button class="bg-black p-4 rounded-full w-32 bg-opacity-70">Explore</button></a>
+      </div>
+    </div>
+  </div>
+</Home>

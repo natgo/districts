@@ -18,7 +18,7 @@ export function ExplorePage() {
           class={`inline-flex h-10 items-center gap-2 rounded-md bg-blue-500 px-4 py-2 font-bold text-white ${
             disabled() ? "cursor-not-allowed opacity-50" : "hover:bg-blue-700"
           }`}
-          type="submit"
+          type="button"
           disabled={disabled()}
           onClick={() => {
             setDisabled(true);
