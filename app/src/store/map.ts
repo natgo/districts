@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js";
 
-import type { GeoSchema, Properties, SignleFeature } from "@/utils/types/geojson.types";
+import type { GeoSchema, Properties, SingleFeature } from "@/utils/types/geojson.types";
 
 const [geo, setGeo] = createSignal<GeoSchema>({
   type: "FeatureCollection",
@@ -12,7 +12,7 @@ const [geo, setGeo] = createSignal<GeoSchema>({
   crs: { type: "name", properties: { name: "" } },
 });
 
-const [features, setFeatures] = createSignal<SignleFeature[]>([]);
+const [features, setFeatures] = createSignal<SingleFeature[]>([]);
 const [current, setCurrent] = createSignal<Properties>();
 const [guessed, setGuessed] = createSignal<Properties[]>([]);
 const [wrong, setWrong] = createSignal<Properties[]>([]);

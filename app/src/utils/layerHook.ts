@@ -13,12 +13,12 @@ import {
   wrong,
 } from "@/store/map";
 
-import { signleFeature } from "./types/geojson.types";
+import { singleFeature } from "./types/geojson.types";
 
 export function layerHook(geoLayer: L.GeoJSON<any, GeoJSON.GeometryObject>) {
   geoLayer.eachLayer((layer) => {
     layer.on("click", (event) => {
-      const feature = signleFeature.parse(event.target.feature);
+      const feature = singleFeature.parse(event.target.feature);
 
       if (guessed().find((element) => element.id === feature.properties.id)) {
         console.log("already correct");
@@ -36,7 +36,7 @@ export function layerHook(geoLayer: L.GeoJSON<any, GeoJSON.GeometryObject>) {
         }
 
         geoLayer.eachLayer((element) => {
-          const feature = signleFeature.parse(element.feature);
+          const feature = singleFeature.parse(element.feature);
 
           wrong().forEach((wrongElement) => {
             if (feature.properties.id === wrongElement.id) {

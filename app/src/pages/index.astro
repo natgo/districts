@@ -1,30 +1,31 @@
 ---
-import { ExplorePage } from "@/components/solid/Explore";
-import { Lobby } from "@/components/solid/Lobby";
 import Home from "@/layouts/Home.astro";
-import Layout from "@/layouts/Layout.astro";
-import { GitHubLogoIcon } from '@radix-ui/react-icons'
-import '@fontsource-variable/outfit';
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import "@fontsource-variable/outfit";
 ---
 
 <Home title="Kaupunginosapeli">
-  <video autoplay muted loop id="taustavideo" class=" w-full -z-50 absolute">
-    <source src="taustavideo.mp4" type="video/mp4">
+  <video autoplay muted loop id="taustavideo" class="absolute -z-50 w-full">
+    <source src="taustavideo.mp4" type="video/mp4" />
   </video>
-  <div class=" p-[12px] absolute">
-      <a href="https://github.com/natgo/districts" target="_blank">
-        <GitHubLogoIcon className="w-[60px] h-[60px] bg-white rounded-full"/>
-      </a>
+  <div class="absolute p-[12px]">
+    <a href="https://github.com/natgo/districts" target="_blank">
+      <GitHubLogoIcon className="h-[60px] w-[60px] rounded-full bg-white" />
+    </a>
   </div>
-  <div class="w-full h-full grid place-items-center">
-    <div class=" font-outfit flex flex-col items-center">
+  <div class="grid h-full w-full place-items-center">
+    <div class="flex flex-col items-center font-outfit">
       <h1 class="text-8xl font-normal text-white drop-shadow-[0_10px_10px_rgba(0,0,0,1)]">
         Kaupunginosapeli
       </h1>
-      <div class=" flex gap-20 mt-10 items-center text-2xl text-white p-4 ">
-        <a href="./map"><button class="bg-black p-4 rounded-full w-32 bg-opacity-70">Single</button></a>
-        <a href=""><button class="bg-black p-4 rounded-full w-32 bg-opacity-70">Multi</button></a>
-        <a href="./explore"><button class="bg-black p-4 rounded-full w-32 bg-opacity-70">Explore</button></a>
+      <div class="mt-10 flex items-center gap-20 p-4 text-2xl text-white">
+        <a href="./map">
+          <button class="w-32 rounded-full bg-black bg-opacity-70 p-4">Single</button>
+        </a>
+        <a href=""><button class="w-32 rounded-full bg-black bg-opacity-70 p-4">Multi</button></a>
+        <a href="./explore">
+          <button class="w-32 rounded-full bg-black bg-opacity-70 p-4">Explore</button>
+        </a>
       </div>
     </div>
   </div>

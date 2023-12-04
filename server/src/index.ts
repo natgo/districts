@@ -8,7 +8,6 @@ import {
   userRepo,
   userZodSchema,
 } from "./db";
-import { Entity } from "redis-om";
 
 const app = new Elysia()
   .use(defaults)
@@ -46,8 +45,36 @@ const app = new Elysia()
       type: "application/json",
     }
   )
+  .post(
+    "/api/createUser",
+    ({ cookie: { sessionID }, body }) => {
+      const session = crypto.randomUUID();
+      const user: UserSchema = {
+        userName: body.userName,
+        sessionID: session,
+      };
+      userRepo.save(userZodSchema.parse(user));
+      sessionID?.set({
+        domain: "localhost",
+        httpOnly: true,
+        path: "/",
+        value: session,
+      });
+
+      return "OK";
+    },
+    {
+      body: t.Object({
+        userName: t.String({ maxLength: 32 }),
+      }),
+      type: "application/json",
+    }
+  )
   .ws("/api/ws", {
-    body: t.Object({ guess: t.String({ maxLength: 100 }) }),
+    body: t.Union([
+      t.Object({ guess: t.String({ maxLength: 100 }) }),
+      t.Object({ start: t.Literal(true) }),
+    ]),
     query: t.Object({ code: t.String() }),
     cookie: t.Cookie({ sessionID: t.String() }),
 
@@ -88,15 +115,20 @@ const app = new Elysia()
         .equals(ws.data.cookie.sessionID.get())
         .return.first();
 
-      const lobbyStatus = lobbyZodSchema.parse(dbLobbyMatch);
+      const lobby = lobbyZodSchema.parse(dbLobbyMatch);
       if (dbUserMatch) {
         const user = userZodSchema.passthrough().parse(dbUserMatch);
-
-        if (message.guess === lobbyStatus.currentDistrict) {
-          user.score ? user.score++ : 1;
+        if ("start" in message) {
+          if (user.sessionID === lobby.creator) {
+            ws.publish(ws.data.query.code, { start: true });
+          }
+        } else {
+          if (message.guess === lobby.currentDistrict) {
+            user.score ? user.score++ : 1;
+          }
+          await userRepo.save(user);
+          ws.publish(ws.data.query.code, { locked: user.userName });
         }
-        await userRepo.save(user);
-        ws.publish(ws.data.query.code, { locked: user.userName });
       }
     },
 

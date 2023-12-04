@@ -11,14 +11,12 @@ import L from "leaflet";
 
 export function FloatingBox(props: { map: Accessor<L.Map | undefined> }) {
   const [type, setType] = createSignal<Types>("kaupunginosat");
-  let geoLayer: L.GeoJSON<any, L.GeoJSON.GeometryObject>;
+  let geoLayer: L.GeoJSON<any, GeoJSON.GeometryObject>;
   const layerGroup = new L.LayerGroup();
-
-  const [player, setPlayer] = createSignal<"single" | "multi">();
 
   return (
     <div class="fixed bottom-28 right-0 top-28 z-[1000] m-5 flex w-1/6 flex-col gap-4 rounded-3xl bg-white p-5">
-      <div class={player() === "multi" ? "hidden" : "flex flex-col items-center gap-2"}>
+      <div class={"flex flex-col items-center gap-2"}>
         <h1 class="mb-4 text-2xl font-bold">Single-player</h1>
         <label
           for="type"
@@ -50,11 +48,9 @@ export function FloatingBox(props: { map: Accessor<L.Map | undefined> }) {
         <button
           onClick={async () => {
             if (status()) {
-              setPlayer();
               cleanGame();
               layerGroup.removeLayer(geoLayer);
             } else {
-              setPlayer("single");
               await createNewGame(type());
               geoLayer = L.geoJSON(geo(), {
                 style: {
@@ -77,74 +73,6 @@ export function FloatingBox(props: { map: Accessor<L.Map | undefined> }) {
         <div class={status() ? "" : "hidden"}>
           <span>Correct: {correct().correct}</span> <span>Wrong: {correct().wrong}</span>
         </div>
-      </div>
-      <div class={player() === "single" ? "hidden" : "flex flex-col items-center gap-2"}>
-        <h1 class="mb-4 text-2xl font-bold">Multi-player</h1>
-        <button
-          onClick={async () => {
-            if (status()) {
-              setPlayer();
-              cleanGame();
-              layerGroup.removeLayer(geoLayer);
-            } else {
-              setPlayer("multi");
-              await createNewGame(type());
-              geoLayer = L.geoJSON(geo(), {
-                style: {
-                  color: "#0000ff",
-                  fillOpacity: 0,
-                  opacity: 0.7,
-                },
-              });
-
-              layerGroup.addLayer(geoLayer);
-              layerGroup.addTo(props.map());
-
-              layerHook(geoLayer);
-            }
-          }}
-          class="w-fit rounded bg-sky-500 px-2 py-1 font-bold text-white hover:bg-sky-700"
-        >
-          {status() ? "End game" : "Create lobby"}
-        </button>
-        <label
-          for="code"
-          class={status() ? "hidden" : "mb-2 block text-sm font-medium text-gray-900"}
-        >
-          Or input lobby code
-        </label>
-        <input
-          type="text"
-          name="code"
-          class="focus:shadow-outline appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-        />
-        <button
-          onClick={async () => {
-            if (status()) {
-              setPlayer();
-              cleanGame();
-              layerGroup.removeLayer(geoLayer);
-            } else {
-              setPlayer("multi");
-              await createNewGame(type());
-              geoLayer = L.geoJSON(geo(), {
-                style: {
-                  color: "#0000ff",
-                  fillOpacity: 0,
-                  opacity: 0.7,
-                },
-              });
-
-              layerGroup.addLayer(geoLayer);
-              layerGroup.addTo(props.map());
-
-              layerHook(geoLayer);
-            }
-          }}
-          class="w-fit rounded bg-sky-500 px-2 py-1 font-bold text-white hover:bg-sky-700"
-        >
-          {status() ? "Leave lobby" : "Join lobby"}
-        </button>
       </div>
     </div>
   );

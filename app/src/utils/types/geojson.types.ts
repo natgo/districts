@@ -51,7 +51,7 @@ export const properties = z.union([
 ]);
 export type Properties = z.infer<typeof properties>;
 
-export const signleFeature = z.object({
+export const singleFeature = z.object({
   type: z.string(),
   id: z.string(),
   geometry: z.object({
@@ -61,11 +61,11 @@ export const signleFeature = z.object({
   geometry_name: z.string(),
   properties: properties,
 });
-export type SignleFeature = z.infer<typeof signleFeature>;
+export type SingleFeature = z.infer<typeof singleFeature>;
 
 export const geoSchema = z.object({
   type: z.literal("FeatureCollection"),
-  features: z.array(signleFeature),
+  features: z.array(singleFeature),
   totalFeatures: z.number(),
   numberMatched: z.number(),
   numberReturned: z.number(),
