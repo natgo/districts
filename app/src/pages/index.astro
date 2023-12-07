@@ -1,9 +1,9 @@
 ---
-import Home from "@/layouts/Home.astro";
 import "@fontsource-variable/outfit";
 import { IndexPage } from "@/components/react/Index";
+import Layout from "@/layouts/Layout.astro";
 ---
 
-<Home title="Kaupunginosapeli">
+<Layout title="Kaupunginosapeli">
   <IndexPage client:load />
-</Home>
+</Layout>

@@ -6,10 +6,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const schema = z.object({
-  code: z.number(),
   userName: z.string().max(32).min(4),
 });
-export function JoinLobby() {
+export function CreateLobby() {
   const {
     register,
     handleSubmit,
@@ -22,9 +21,9 @@ export function JoinLobby() {
     <form
       onSubmit={handleSubmit(async (data) => {
         // TODO: Use real endpoint
-        const response = await fetch("http://localhost:3000/api/createUser", {
+        const response = await fetch("http://localhost:3000/api/createLobby", {
           method: "POST",
-          body: JSON.stringify({ userName: data.userName }),
+          body: JSON.stringify(data),
         });
         if (response.status === 200) {
           window.open(`/multiplayer?code=${data.code}`, "_self");
@@ -32,17 +31,12 @@ export function JoinLobby() {
       })}
     >
       <div className="space-y-1">
-        <Label htmlFor="code">Lobby code</Label>
-        <Input type="number" {...register("code", { valueAsNumber: true })} id="code" />
-        {errors.code?.message && <p>{errors.code?.message}</p>}
-      </div>
-      <div className="space-y-1">
         <Label htmlFor="joinUserName">Username</Label>
-        <Input type="text" {...register("userName")} id="joinUserName" />
+        <Input type="text" {...register("userName")} id="createUserName" />
         {errors.userName?.message && <p>{errors.userName?.message}</p>}
       </div>
       <div className="py-3">
-        <Button type="submit">Join</Button>
+        <Button type="submit">Create</Button>
       </div>
     </form>
   );

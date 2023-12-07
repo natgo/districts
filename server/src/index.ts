@@ -9,7 +9,11 @@ import {
   userZodSchema,
 } from "./db";
 
-const app = new Elysia()
+const app = new Elysia({
+  websocket: {
+    idleTimeout: 30,
+  },
+})
   .use(defaults)
   .get("/", () => "Hello Elysia")
   .post(
@@ -40,7 +44,7 @@ const app = new Elysia()
     },
     {
       body: t.Object({
-        userName: t.String({ maxLength: 32 }),
+        userName: t.String({ maxLength: 32, minLength: 4 }),
       }),
       type: "application/json",
     }
@@ -98,9 +102,27 @@ const app = new Elysia()
       }
     },
 
-    open(ws) {
+    async open(ws) {
       ws.send("opened");
+      const dbLobbyMatch = await lobbyRepo
+        .search()
+        .where("code")
+        .equals(ws.data.query.code)
+        .return.first();
+      const dbUserMatch = await userRepo
+        .search()
+        .where("sessionID")
+        .equals(ws.data.cookie.sessionID.get())
+        .return.first();
+
+      const lobby = lobbyZodSchema.passthrough().parse(dbLobbyMatch);
+      const user = userZodSchema.parse(dbUserMatch);
+      lobby.members.push(user.userName);
+      await lobbyRepo.save(lobby);
+
+      ws.send(lobby.members);
       ws.subscribe(ws.data.query.code);
+      ws.publish(ws.data.query.code, { join: user.userName });
     },
 
     async message(ws, message) {
@@ -133,7 +155,8 @@ const app = new Elysia()
     },
 
     async close(ws) {
-      ws.unsubscribe(ws.data.query.code);
+      console.log("close");
+
       const dbUserMatch = await userRepo
         .search()
         .where("sessionID")
@@ -144,9 +167,13 @@ const app = new Elysia()
         user.code = undefined;
         user.score = undefined;
         await userRepo.save(user);
-        ws.publish(ws.data.query.code, { left: user.userName });
-      }
 
+        app.server?.publish(
+          ws.data.query.code,
+          JSON.stringify({ left: user.userName })
+        );
+      }
+      ws.unsubscribe(ws.data.query.code);
       // TODO: remove from lobby
     },
   })
