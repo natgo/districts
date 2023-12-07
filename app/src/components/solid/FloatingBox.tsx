@@ -1,4 +1,5 @@
 /** @jsxImportSource solid-js */
+import "@fontsource-variable/outfit";
 import { type Accessor, createSignal } from "solid-js";
 
 import CurrentText from "@/components/solid/CurrentText";
@@ -15,12 +16,12 @@ export function FloatingBox(props: { map: Accessor<L.Map | undefined> }) {
   const layerGroup = new L.LayerGroup();
 
   return (
-    <div class="fixed bottom-28 right-0 top-28 z-[1000] m-5 flex w-1/6 flex-col gap-4 rounded-3xl bg-white p-5">
-      <div class={"flex flex-col items-center gap-2"}>
-        <h1 class="mb-4 text-2xl font-bold">Single-player</h1>
+    <div class="fixed right-0 top-28 z-[1000] m-5 flex w-1/6 flex-col gap-4 rounded-3xl bg-white p-5">
+      <div class={"flex flex-col items-center gap-2 font-outfit"}>
+        <h1 class="mb-4 text-2xl font-bold text-black ">Single-player</h1>
         <label
           for="type"
-          class={status() ? "hidden" : "mb-2 block text-sm font-medium text-gray-900"}
+          class={status() ? "hidden" : "mb-2 block text-sm font-medium text-black"}
         >
           Select game mode
         </label>
@@ -33,7 +34,7 @@ export function FloatingBox(props: { map: Accessor<L.Map | undefined> }) {
           class={
             status()
               ? "hidden"
-              : "block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+              : "block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-black focus:border-black focus:ring-black"
           }
         >
           <option value="kaupunginosat">Kaupunginosat</option>
@@ -66,7 +67,7 @@ export function FloatingBox(props: { map: Accessor<L.Map | undefined> }) {
               layerHook(geoLayer);
             }
           }}
-          class="w-fit rounded bg-sky-500 px-2 py-1 font-bold text-white hover:bg-sky-700"
+          class="w-fit h-10 text-center rounded-full bg-black px-4 py-2  font-bold text-white hover:bg-gray-800"
         >
           {status() ? "End game" : "Start game"}
         </button>

@@ -9,7 +9,7 @@ import {
 
 export default function CurrentText() {
   return (
-    <div class="mb-2 text-3xl font-bold">
+    <div class="mb-2 text-3xl font-bold text-black">
       {() => {
         if (win()) {
           return <>Voitit pelin</>;

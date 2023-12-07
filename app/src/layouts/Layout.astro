@@ -23,16 +23,7 @@ import "@/styles/globals.css";
     <title>{title}</title>
   </head>
   <body class="h-screen w-screen">
-    <nav class="absolute z-[1000] h-[50px] w-full bg-[#0a1e3c] bg-opacity-80">
-      <ul class="container flex items-center p-3 text-gray-200">
-        <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`}>
-          <a href="/">Home</a>
-        </li>
-        <li class={`border-b-2 ${active("/explore")} mx-1.5 sm:mx-6`}>
-          <a href="/explore">Explore</a>
-        </li>
-      </ul>
-    </nav>
+   
     <slot />
   </body>
 </html>
