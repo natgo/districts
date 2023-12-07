@@ -26,7 +26,7 @@ export function CreateLobby() {
           body: JSON.stringify(data),
         });
         if (response.status === 200) {
-          window.open(`/multiplayer?code=${data.code}`, "_self");
+          window.open(`/multiplayer?code=${await response.text()}`, "_self");
         }
       })}
     >

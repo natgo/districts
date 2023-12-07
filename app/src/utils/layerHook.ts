@@ -23,11 +23,14 @@ export function layerHook(geoLayer: L.GeoJSON<any, GeoJSON.GeometryObject>) {
       if (guessed().find((element) => element.id === feature.properties.id)) {
         console.log("already correct");
       } else if (feature.properties.id === current()?.id) {
+        // Set color to green
         layer.setStyle({
           color: "#00ff00",
           fillOpacity: 0.4,
           opacity: 0.5,
         });
+
+        // This triggers on win
         if (features().length === 1) {
           setFeatures((prevFeatures) => prevFeatures.slice(1));
           incrementCorrect();

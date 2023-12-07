@@ -30,4 +30,35 @@ const endGameZ = z.object({
   ),
 });
 
-export { startZ, disconnectZ, joinZ, lockedZ, endGameZ };
+// Happens when time on question runs out
+const timeOverZ = z.object({
+  correct: z.boolean(),
+  currentStats: z.array(
+    z.object({
+      userName: z.string(),
+      score: z.number(),
+    }),
+  ),
+});
+
+// Happens when joining lobby
+const membersZ = z.object({
+  members: z.array(z.string()),
+});
+const creatorZ = z.object({
+  creator: z.literal(true),
+});
+
+const WSReturnType = z.union([startZ, disconnectZ, lockedZ, joinZ, endGameZ, membersZ, creatorZ]);
+
+export {
+  startZ,
+  disconnectZ,
+  joinZ,
+  lockedZ,
+  endGameZ,
+  timeOverZ,
+  membersZ,
+  creatorZ,
+  WSReturnType,
+};

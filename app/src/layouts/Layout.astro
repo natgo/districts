@@ -5,11 +5,12 @@ interface Props {
 
 const { title } = Astro.props;
 
-const location = Astro.url.pathname;
-const active = (path: string) =>
-  path == location ? "border-sky-600" : "border-transparent hover:border-sky-600";
+// const location = Astro.url.pathname;
+// const active = (path: string) =>
+//   path == location ? "border-sky-600" : "border-transparent hover:border-sky-600";
 // import IsRouting from "@/components/solid/IsRouting";
 import "@/styles/globals.css";
+import "@fontsource-variable/outfit";
 ---
 
 <!doctype html>

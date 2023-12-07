@@ -8,6 +8,7 @@ import {
   userRepo,
   userZodSchema,
 } from "./db";
+import { z } from "zod";
 
 const app = new Elysia({
   websocket: {
@@ -32,7 +33,7 @@ const app = new Elysia({
         value: session,
       });
 
-      const code = Math.ceil(Math.random() * 1000000);
+      const code = Math.floor(100000 + Math.random() * 900000);
 
       const lobby: LobbySchema = {
         code: code,
@@ -103,7 +104,7 @@ const app = new Elysia({
     },
 
     async open(ws) {
-      ws.send("opened");
+      console.log("opened");
       const dbLobbyMatch = await lobbyRepo
         .search()
         .where("code")
@@ -114,15 +115,24 @@ const app = new Elysia({
         .where("sessionID")
         .equals(ws.data.cookie.sessionID.get())
         .return.first();
+      if (dbLobbyMatch) {
+        const user = userZodSchema.parse(dbUserMatch);
+        if (dbLobbyMatch.creator !== user.sessionID) {
+          const members = z.array(z.string()).parse(dbLobbyMatch.members);
+          // TODO: don't push multiple of the same session
+          members.push(user.userName);
+          dbLobbyMatch.members = members;
 
-      const lobby = lobbyZodSchema.passthrough().parse(dbLobbyMatch);
-      const user = userZodSchema.parse(dbUserMatch);
-      lobby.members.push(user.userName);
-      await lobbyRepo.save(lobby);
+          await lobbyRepo.save(dbLobbyMatch);
+        } else {
+          ws.send({ creator: true });
+        }
 
-      ws.send(lobby.members);
-      ws.subscribe(ws.data.query.code);
-      ws.publish(ws.data.query.code, { join: user.userName });
+        ws.send({ members: dbLobbyMatch.members });
+
+        ws.subscribe(ws.data.query.code);
+        ws.publish(ws.data.query.code, { join: user.userName });
+      }
     },
 
     async message(ws, message) {
@@ -139,16 +149,16 @@ const app = new Elysia({
 
       const lobby = lobbyZodSchema.parse(dbLobbyMatch);
       if (dbUserMatch) {
-        const user = userZodSchema.passthrough().parse(dbUserMatch);
+        const user = userZodSchema.parse(dbUserMatch);
         if ("start" in message) {
           if (user.sessionID === lobby.creator) {
             ws.publish(ws.data.query.code, { start: true });
           }
         } else {
           if (message.guess === lobby.currentDistrict) {
-            user.score ? user.score++ : 1;
+            typeof dbUserMatch.score === "number" ? dbUserMatch.score++ : 1;
           }
-          await userRepo.save(user);
+          await userRepo.save(dbUserMatch);
           ws.publish(ws.data.query.code, { locked: user.userName });
         }
       }
@@ -163,10 +173,11 @@ const app = new Elysia({
         .equals(ws.data.cookie.sessionID.get())
         .return.first();
       if (dbUserMatch) {
-        const user = userZodSchema.passthrough().parse(dbUserMatch);
-        user.code = undefined;
-        user.score = undefined;
-        await userRepo.save(user);
+        const user = userZodSchema.parse(dbUserMatch);
+
+        dbUserMatch.code = undefined;
+        dbUserMatch.score = undefined;
+        await userRepo.save(dbUserMatch);
 
         app.server?.publish(
           ws.data.query.code,
@@ -174,7 +185,7 @@ const app = new Elysia({
         );
       }
       ws.unsubscribe(ws.data.query.code);
-      // TODO: remove from lobby
+      // TODO: remove from lobby on db
     },
   })
   .listen(3000);

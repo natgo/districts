@@ -12,10 +12,10 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     react({
-      include: ["**/react/*"],
+      include: ["**/react/**"],
     }),
     solidJs({
-      include: ["**/solid/*"],
+      include: ["**/solid/**"],
     }),
   ],
   vite: { plugins: [visualizer({ gzipSize: true, brotliSize: true })] },

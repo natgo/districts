@@ -1,17 +1,13 @@
 /** @jsxImportSource solid-js */
 import { createEffect, createSignal } from "solid-js";
 
-import { FloatingBox } from "@/components/solid/FloatingBox";
-import { createWS } from "@solid-primitives/websocket";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
+import { FloatingBoxMulti } from "./FloatingBoxMulti";
+
 export default function MultiMapPage() {
   const [map, setMap] = createSignal<L.Map>();
-  const [showMap, setShowMap] = createSignal(false);
-
-  const url = new URL(location.href);
-  const ws = createWS("ws://localhost:3000/api/ws" + url.search);
 
   createEffect(() => {
     const mapDiv = document.getElementById("main-map") as HTMLDivElement;
@@ -21,7 +17,6 @@ export default function MultiMapPage() {
       maxZoom: 19,
       minZoom: 10,
       attribution:
-        // eslint-disable-next-line quotes
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a><br/>Data <a href="https://creativecommons.org/licenses/by/4.0/">CC-by</a> City of Helsinki, City Survey Services.',
     }).addTo(newMap);
 
@@ -34,7 +29,7 @@ export default function MultiMapPage() {
         <div id="main-map" class="h-full" />
       </div>
 
-      <FloatingBox map={map} />
+      <FloatingBoxMulti map={map} />
     </main>
   );
 }

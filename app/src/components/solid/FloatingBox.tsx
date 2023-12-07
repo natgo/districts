@@ -1,5 +1,4 @@
 /** @jsxImportSource solid-js */
-import "@fontsource-variable/outfit";
 import { type Accessor, createSignal } from "solid-js";
 
 import CurrentText from "@/components/solid/CurrentText";
@@ -8,6 +7,7 @@ import { cleanGame } from "@/utils/cleanGame";
 import { createNewGame } from "@/utils/createNewGame";
 import { layerHook } from "@/utils/layerHook";
 import { type Types, types } from "@/utils/types/map.types";
+import "@fontsource-variable/outfit";
 import L from "leaflet";
 
 export function FloatingBox(props: { map: Accessor<L.Map | undefined> }) {
@@ -19,12 +19,9 @@ export function FloatingBox(props: { map: Accessor<L.Map | undefined> }) {
     <div class="fixed right-0 top-28 z-[1000] m-5 flex w-1/6 flex-col gap-4 rounded-3xl bg-white p-5">
       <div class={"flex flex-col items-center gap-2 font-outfit"}>
         <h1 class="mb-4 text-2xl font-bold text-black ">Single-player</h1>
-        <label
-          for="type"
-          class={status() ? "hidden" : "mb-2 block text-sm font-medium text-black"}
-        >
+        <div class={status() ? "hidden" : "mb-2 block text-sm font-medium text-black"}>
           Select game mode
-        </label>
+        </div>
         <select
           id="type"
           onChange={(event) => {
@@ -67,11 +64,11 @@ export function FloatingBox(props: { map: Accessor<L.Map | undefined> }) {
               layerHook(geoLayer);
             }
           }}
-          class="w-fit h-10 text-center rounded-full bg-black px-4 py-2  font-bold text-white hover:bg-gray-800"
+          class="h-10 w-fit rounded-full bg-black px-4 py-2 text-center font-bold text-white hover:bg-gray-800"
         >
           {status() ? "End game" : "Start game"}
         </button>
-        <div class={status() ? "" : "hidden"}>
+        <div class={status() ? undefined : "hidden"}>
           <span>Correct: {correct().correct}</span> <span>Wrong: {correct().wrong}</span>
         </div>
       </div>
