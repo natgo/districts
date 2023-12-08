@@ -30,6 +30,10 @@ const endGameZ = z.object({
   ),
 });
 
+const nextZ = z.object({
+  next: z.string(), // nimi_fi
+});
+
 // Happens when time on question runs out
 const timeOverZ = z.object({
   correct: z.boolean(),
@@ -57,6 +61,7 @@ export {
   joinZ,
   lockedZ,
   endGameZ,
+  nextZ,
   timeOverZ,
   membersZ,
   creatorZ,

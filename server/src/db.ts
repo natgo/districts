@@ -33,7 +33,7 @@ const lobbyRedisSchema = new Schema("lobby", {
 export const lobbyZodSchema = z.object({
   code: z.number(),
   creator: z.string().uuid(),
-  members: z.string().uuid().array(),
+  members: z.string().array(),
   currentDistrict: z.string().optional(),
   timeLeft: z.date().optional(),
 });

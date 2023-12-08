@@ -2,7 +2,7 @@
 import { type Accessor, For, createSignal } from "solid-js";
 
 import CurrentText from "@/components/solid/CurrentText";
-import { current, geo, status } from "@/store/map";
+import { current, geo, setCurrent, status } from "@/store/map";
 import {
   corrects,
   host,
@@ -48,6 +48,15 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
 
     if ("start" in data) {
       startGame();
+    }
+
+    if ("next" in data) {
+      geoLayer.eachLayer((layer) => {
+        const layerFeature = singleFeature.parse(layer.feature);
+        if (layerFeature.properties.id === data.next) {
+          setCurrent(layerFeature.properties);
+        }
+      });
     }
 
     if ("correct" in data) {

@@ -1,4 +1,4 @@
-import { Elysia, t } from "elysia";
+import { Elysia, MergeSchema, UnwrapRoute, t } from "elysia";
 import { defaults } from "./defaults";
 import {
   LobbySchema,
@@ -9,6 +9,74 @@ import {
   userZodSchema,
 } from "./db";
 import { z } from "zod";
+import kaupunginosat from "./kaupunginosat.json";
+import shuffle from "./shuffle";
+import { DateTime } from "luxon";
+import { Entity } from "redis-om";
+import { TSchema, TUnion, TObject, TString, TLiteral } from "@sinclair/typebox";
+import { ServerWebSocket } from "bun";
+import { TypeCheck } from "elysia/dist/type-system";
+import { ElysiaWS } from "elysia/dist/ws";
+const games: {
+  code: number;
+  districts: number[];
+  stats: { score: number; userName: string }[];
+}[] = [];
+
+async function setDistrict(
+  ws: ElysiaWS<
+    ServerWebSocket<{ validator?: TypeCheck<TSchema> | undefined }>,
+    MergeSchema<
+      UnwrapRoute<
+        {
+          body: TUnion<
+            [TObject<{ guess: TString }>, TObject<{ start: TLiteral<true> }>]
+          >;
+          query: TObject<{ code: TString }>;
+          cookie: TObject<{ sessionID: TString }>;
+          beforeHandle: unknown;
+          open: unknown;
+          message: unknown;
+          close: unknown;
+        },
+        {}
+      >,
+      {
+        body: unknown;
+        headers: unknown;
+        query: unknown;
+        params: unknown;
+        cookie: unknown;
+        response: unknown;
+      }
+    > & { params: Record<never, string> },
+    { request: {}; store: {} }
+  >,
+  dbLobbyMatch: Entity,
+  districts: number[]
+) {
+  const date = DateTime.now().plus({ seconds: 20 });
+  app.server?.publish(
+    ws.data.query.code,
+    JSON.stringify({
+      next: districts[0],
+    })
+  );
+  setTimeout(() => {
+    app.server?.publish(
+      ws.data.query.code,
+      JSON.stringify({
+        currentStats: games.find(
+          (value) => value.code.toString() === ws.data.query.code
+        )?.stats,
+      })
+    );
+  }, date.diffNow().milliseconds);
+  dbLobbyMatch.currentDistrict = districts[0];
+  dbLobbyMatch.timeLeft = date.toJSDate();
+
+  await lobbyRepo.save(dbLobbyMatch);
+}
 
 const app = new Elysia({
   websocket: {
@@ -147,11 +215,25 @@ const app = new Elysia({
         .equals(ws.data.cookie.sessionID.get())
         .return.first();
 
-      const lobby = lobbyZodSchema.parse(dbLobbyMatch);
-      if (dbUserMatch) {
+      if (dbUserMatch && dbLobbyMatch) {
+        const lobby = lobbyZodSchema.parse(dbLobbyMatch);
         const user = userZodSchema.parse(dbUserMatch);
         if ("start" in message) {
           if (user.sessionID === lobby.creator) {
+            const districts = shuffle(
+              kaupunginosat.features.map((value) => value.properties.id)
+            );
+            games.push({
+              code: lobby.code,
+              districts: kaupunginosat.features.map(
+                (value) => value.properties.id
+              ),
+              stats: lobby.members.map((member) => {
+                return { userName: member, score: 0 };
+              }),
+            });
+            setDistrict(ws, dbLobbyMatch, districts);
+
             ws.publish(ws.data.query.code, { start: true });
           }
         } else {
