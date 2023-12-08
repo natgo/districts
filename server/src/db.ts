@@ -9,33 +9,35 @@ await redis.connect();
 
 const userRedisSchema = new Schema("user", {
   userName: { type: "string" },
+  userID: { type: "string" },
   sessionID: { type: "string" },
   code: { type: "number" },
-  score: { type: "number" },
 });
 
 export const userZodSchema = z.object({
   userName: z.string(),
+  userID: z.string().uuid(),
   sessionID: z.string().uuid(),
   code: z.number().optional(),
-  score: z.number().optional(),
 });
 export type UserSchema = z.infer<typeof userZodSchema>;
 
 const lobbyRedisSchema = new Schema("lobby", {
   code: { type: "number" },
-  creator: { type: "string" }, // SessionID
-  members: { type: "string[]" }, // SessionID
-  currentDistrict: { type: "string" },
-  timeLeft: { type: "date" },
+  creator: { type: "string" }, // userID
+  members: { type: "string[]" }, // userName
+  userIDs: { type: "string[]" }, // userID
+  scores: { type: "number[]" },
+  currentDistrict: { type: "number" },
 });
 
 export const lobbyZodSchema = z.object({
   code: z.number(),
   creator: z.string().uuid(),
   members: z.string().array(),
-  currentDistrict: z.string().optional(),
-  timeLeft: z.date().optional(),
+  userIDs: z.string().uuid().array(),
+  scores: z.number().array(),
+  currentDistrict: z.number().optional(),
 });
 export type LobbySchema = z.infer<typeof lobbyZodSchema>;
 

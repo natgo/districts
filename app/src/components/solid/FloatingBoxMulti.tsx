@@ -12,10 +12,11 @@ import {
   setCorrects,
   setHost,
   setMembers,
+  setScore,
   setSelected,
 } from "@/store/multiPlayer";
 import { cleanGame } from "@/utils/cleanGame";
-import { createNewGame } from "@/utils/createNewGame";
+import { createNewGameMulti } from "@/utils/createNewGameMulti";
 import { singleFeature } from "@/utils/types/geojson.types";
 import { type Types, types } from "@/utils/types/map.types";
 import { WSReturnType } from "@/utils/types/returnType";
@@ -24,6 +25,8 @@ import L from "leaflet";
 
 export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
   const [type, setType] = createSignal<Types>("kaupunginosat");
+  const [userID, setUserID] = createSignal<string>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let geoLayer: L.GeoJSON<any, GeoJSON.GeometryObject>;
   const layerGroup = new L.LayerGroup();
 
@@ -36,10 +39,17 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
 
     if ("members" in data) {
       setMembers(data.members);
+      setUserID(data.you);
     }
 
     if ("join" in data) {
       setMembers((prev) => [...prev, data.join]);
+    }
+
+    if ("left" in data) {
+      const index = members().findIndex((value) => value.userID === data.left.userID);
+      const member = members().toSpliced(index, 1);
+      setMembers(member);
     }
 
     if ("creator" in data) {
@@ -59,25 +69,18 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
       });
     }
 
-    if ("correct" in data) {
-      if (data.correct === true) {
-        selected()?.setStyle({
-          color: "#00ff00",
-          fillOpacity: 0.4,
-          opacity: 0.5,
-        });
-        setCorrects((prevGuessed) => [...prevGuessed, current()!]);
-        setSelected();
-      } else {
-        selected()?.setStyle({
-          color: "#000000",
-          fillOpacity: 0.4,
-          opacity: 0.5,
-        });
-
-        setCorrects((prevGuessed) => [...prevGuessed, current()!]);
-        setSelected();
+    if ("currentStats" in data) {
+      setScore(data.currentStats.find((value) => value.userID === userID())?.score);
+      if (selected()) {
+        const selectedFeature = singleFeature.parse(selected().feature);
+        if (selectedFeature.properties.id !== current()?.id) {
+          geoLayer.resetStyle(selected());
+        }
       }
+
+      setCorrects((prevGuessed) => [...prevGuessed, current()!]);
+      setSelected();
+
       geoLayer.eachLayer((layer) => {
         const layerFeature = singleFeature.parse(layer.feature);
         if (layerFeature.properties.id === current()?.id) {
@@ -99,7 +102,7 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
   };
 
   const startGame = async () => {
-    await createNewGame(type());
+    await createNewGameMulti(type());
     geoLayer = L.geoJSON(geo(), {
       style: {
         color: "#0000ff",
@@ -112,8 +115,16 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
     layerGroup.addTo(props.map());
 
     geoLayer.eachLayer((layer) => {
+      if (host()) {
+        return;
+      }
+
       layer.on("click", (event) => {
         const clickedLayerFeature = singleFeature.parse(event.target.feature);
+
+        if (selected()) {
+          return;
+        }
 
         if (corrects().find((element) => element.id === clickedLayerFeature.properties.id)) {
           console.log("already correct");
@@ -127,10 +138,7 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
           setSelected(layer);
           ws.send(
             JSON.stringify({
-              guess:
-                "nimi_fi" in clickedLayerFeature.properties
-                  ? clickedLayerFeature.properties.nimi_fi
-                  : undefined,
+              guess: clickedLayerFeature.properties.id,
             }),
           );
         }
@@ -139,9 +147,9 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
   };
 
   return (
-    <div class="fixed right-0 top-28 z-[1000] m-5 flex w-1/6 flex-col gap-4 rounded-3xl bg-white p-5">
+    <div class="fixed right-0 top-28 z-[1000] m-5 flex flex-col gap-4 rounded-3xl bg-white p-5">
       <div class={"flex flex-col items-center gap-2 font-outfit"}>
-        <h1 class="mb-4 text-2xl font-bold text-black">Multi-player</h1>
+        <h1 class="mb-4 text-2xl font-bold text-black">Multiplayer</h1>
         <div class={status() ? "hidden" : "mb-2 block text-sm font-medium text-black"}>
           {host() ? "Select game mode" : "Waiting host to start"}
         </div>
@@ -176,19 +184,21 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
         >
           Start game
         </button>
-        <div class={status() ? undefined : "hidden"}>
+        <div class={!status() || host() ? "hidden" : undefined}>
           <span>Score: {score()}</span>
         </div>
-      <div>
-        Players:
-        <div class="flex w-64 flex-col items-center font-mono">
-          <div class="mt-10 flex flex-wrap justify-center items-center gap-2 text-2xl">
-            <For
-              each={members()}
-              fallback={<div>Waiting...</div>}
-            >
-              {(item) => <div class=" px-2 pb-0.5 rounded-xl bg-black text-sm text-white">{item}</div>}
-            </For>
+        <div>
+          Players:
+          <div class="flex w-64 flex-col items-center font-mono">
+            <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-2xl">
+              <For each={members()} fallback={<div>Waiting...</div>}>
+                {(item) => (
+                  <div class="rounded-xl bg-black px-2 pb-0.5 text-sm text-white">
+                    {item.userName}
+                  </div>
+                )}
+              </For>
+            </div>
           </div>
         </div>
       </div>

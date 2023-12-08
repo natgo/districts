@@ -1,4 +1,4 @@
-import { Elysia, MergeSchema, UnwrapRoute, t } from "elysia";
+import { Elysia, t } from "elysia";
 import { defaults } from "./defaults";
 import {
   LobbySchema,
@@ -11,71 +11,59 @@ import {
 import { z } from "zod";
 import kaupunginosat from "./kaupunginosat.json";
 import shuffle from "./shuffle";
-import { DateTime } from "luxon";
-import { Entity } from "redis-om";
-import { TSchema, TUnion, TObject, TString, TLiteral } from "@sinclair/typebox";
-import { ServerWebSocket } from "bun";
-import { TypeCheck } from "elysia/dist/type-system";
-import { ElysiaWS } from "elysia/dist/ws";
-const games: {
-  code: number;
-  districts: number[];
-  stats: { score: number; userName: string }[];
-}[] = [];
+import { Entity, EntityId } from "redis-om";
+
+function delay(ms: number) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
 
 async function setDistrict(
-  ws: ElysiaWS<
-    ServerWebSocket<{ validator?: TypeCheck<TSchema> | undefined }>,
-    MergeSchema<
-      UnwrapRoute<
-        {
-          body: TUnion<
-            [TObject<{ guess: TString }>, TObject<{ start: TLiteral<true> }>]
-          >;
-          query: TObject<{ code: TString }>;
-          cookie: TObject<{ sessionID: TString }>;
-          beforeHandle: unknown;
-          open: unknown;
-          message: unknown;
-          close: unknown;
-        },
-        {}
-      >,
-      {
-        body: unknown;
-        headers: unknown;
-        query: unknown;
-        params: unknown;
-        cookie: unknown;
-        response: unknown;
-      }
-    > & { params: Record<never, string> },
-    { request: {}; store: {} }
-  >,
-  dbLobbyMatch: Entity,
-  districts: number[]
+  lobbyCodeStr: string,
+  dbLobbyKey: string,
+  district: number
 ) {
-  const date = DateTime.now().plus({ seconds: 20 });
   app.server?.publish(
-    ws.data.query.code,
+    lobbyCodeStr,
     JSON.stringify({
-      next: districts[0],
+      next: district,
     })
   );
-  setTimeout(() => {
-    app.server?.publish(
-      ws.data.query.code,
-      JSON.stringify({
-        currentStats: games.find(
-          (value) => value.code.toString() === ws.data.query.code
-        )?.stats,
-      })
-    );
-  }, date.diffNow().milliseconds);
-  dbLobbyMatch.currentDistrict = districts[0];
-  dbLobbyMatch.timeLeft = date.toJSDate();
+  const dbLobbyMatch = await lobbyRepo.fetch(dbLobbyKey);
+  const lobby = lobbyZodSchema.parse(dbLobbyMatch);
+
+  dbLobbyMatch.currentDistrict = district;
 
   await lobbyRepo.save(dbLobbyMatch);
+
+  await delay(20000);
+  const newDBLobbyMatch = await lobbyRepo.fetch(dbLobbyKey);
+  const newLobby = lobbyZodSchema.parse(newDBLobbyMatch);
+  app.server?.publish(
+    lobbyCodeStr,
+    JSON.stringify({
+      currentStats: newLobby.userIDs.map((userID, index) => {
+        return {
+          userID: userID,
+          userName: newLobby.members.at(index) ?? "ENONAME",
+          score: newLobby.scores.at(index) ?? 0,
+        };
+      }),
+    })
+  );
+}
+
+async function gameLoop(
+  lobbyCodeStr: string,
+  dbLobbyKey: string,
+  districts: number[]
+) {
+  for (const district of districts) {
+    await delay(3000);
+    await setDistrict(lobbyCodeStr, dbLobbyKey, district);
+  }
+  console.log("does this log before game or after");
 }
 
 const app = new Elysia({
@@ -89,8 +77,10 @@ const app = new Elysia({
     "/api/createLobby",
     ({ cookie: { sessionID }, body, set }) => {
       const session = crypto.randomUUID();
+      const userID = crypto.randomUUID();
       const user: UserSchema = {
         userName: body.userName,
+        userID: userID,
         sessionID: session,
       };
       userRepo.save(userZodSchema.parse(user));
@@ -109,8 +99,10 @@ const app = new Elysia({
 
       const lobby: LobbySchema = {
         code: code,
-        creator: session,
+        creator: userID,
         members: [],
+        userIDs: [],
+        scores: [],
       };
       lobbyRepo.save(lobbyZodSchema.parse(lobby));
       return code.toString();
@@ -126,9 +118,11 @@ const app = new Elysia({
     "/api/createUser",
     ({ cookie: { sessionID }, body, set }) => {
       const session = crypto.randomUUID();
+      const userID = crypto.randomUUID();
       const user: UserSchema = {
         userName: body.userName,
         sessionID: session,
+        userID: userID,
       };
       userRepo.save(userZodSchema.parse(user));
       sessionID?.set({
@@ -146,14 +140,15 @@ const app = new Elysia({
     },
     {
       body: t.Object({
-        userName: t.String({ maxLength: 32 }),
+        userName: t.String({ maxLength: 32, minLength: 4 }),
       }),
       type: "application/json",
     }
   )
   .ws("/api/ws", {
     body: t.Union([
-      t.Object({ guess: t.String({ maxLength: 100 }) }),
+      t.Object({ guess: t.Number({ maxLength: 100 }) }),
+      // TODO: add ability to use other modes
       t.Object({ start: t.Literal(true) }),
     ]),
     query: t.Object({ code: t.String() }),
@@ -173,7 +168,7 @@ const app = new Elysia({
         .return.first();
 
       if (dbSessionMatch && dbLobbyMatch) {
-        console.log(dbSessionMatch, dbLobbyMatch);
+        console.log("passed auth");
       } else {
         return "Unauthorized";
       }
@@ -193,21 +188,34 @@ const app = new Elysia({
         .return.first();
       if (dbLobbyMatch) {
         const user = userZodSchema.parse(dbUserMatch);
-        if (dbLobbyMatch.creator !== user.sessionID) {
-          const members = z.array(z.string()).parse(dbLobbyMatch.members);
+        const members = z.string().array().parse(dbLobbyMatch.members);
+        const userIDs = z.string().uuid().array().parse(dbLobbyMatch.userIDs);
+        const scores = z.number().array().parse(dbLobbyMatch.scores);
+        if (dbLobbyMatch.creator !== user.userID) {
           // TODO: don't push multiple of the same session
           members.push(user.userName);
+          userIDs.push(user.userID);
+          scores.push(0);
           dbLobbyMatch.members = members;
+          dbLobbyMatch.userIDs = userIDs;
+          dbLobbyMatch.scores = scores;
 
           await lobbyRepo.save(dbLobbyMatch);
         } else {
           ws.send({ creator: true });
         }
 
-        ws.send({ members: dbLobbyMatch.members });
+        ws.send({
+          members: userIDs.map((userID, index) => {
+            return { userName: members.at(index) ?? "ENONAME", userID: userID };
+          }),
+          you: user.userID,
+        });
 
         ws.subscribe(ws.data.query.code);
-        ws.publish(ws.data.query.code, { join: user.userName });
+        ws.publish(ws.data.query.code, {
+          join: { userName: user.userName, userID: user.userID },
+        });
       }
     },
 
@@ -227,29 +235,29 @@ const app = new Elysia({
         const lobby = lobbyZodSchema.parse(dbLobbyMatch);
         const user = userZodSchema.parse(dbUserMatch);
         if ("start" in message) {
-          if (user.sessionID === lobby.creator) {
+          if (user.userID === lobby.creator) {
             const districts = shuffle(
               kaupunginosat.features.map((value) => value.properties.id)
             );
-            games.push({
-              code: lobby.code,
-              districts: kaupunginosat.features.map(
-                (value) => value.properties.id
-              ),
-              stats: lobby.members.map((member) => {
-                return { userName: member, score: 0 };
-              }),
-            });
-            setDistrict(ws, dbLobbyMatch, districts);
 
             ws.publish(ws.data.query.code, { start: true });
+            gameLoop(ws.data.query.code, dbLobbyMatch[EntityId], districts);
           }
         } else {
-          if (message.guess === lobby.currentDistrict) {
-            typeof dbUserMatch.score === "number" ? dbUserMatch.score++ : 1;
+          if (message.guess === lobby.currentDistrict && dbLobbyMatch) {
+            const index = lobby.userIDs.findIndex(
+              (userID) => user.userID === userID
+            );
+
+            dbLobbyMatch.scores[index]++;
+
+            await lobbyRepo.save(dbLobbyMatch);
           }
-          await userRepo.save(dbUserMatch);
-          ws.publish(ws.data.query.code, { locked: user.userName });
+          console.log(user.userName, lobby.currentDistrict, message.guess);
+
+          ws.publish(ws.data.query.code, {
+            locked: { userName: user.userName, userID: user.userID },
+          });
         }
       }
     },
@@ -257,25 +265,43 @@ const app = new Elysia({
     async close(ws) {
       console.log("close");
 
+      const dbLobbyMatch = await lobbyRepo
+        .search()
+        .where("code")
+        .equals(ws.data.query.code)
+        .return.first();
       const dbUserMatch = await userRepo
         .search()
         .where("sessionID")
         .equals(ws.data.cookie.sessionID.get())
         .return.first();
-      if (dbUserMatch) {
+      if (dbUserMatch && dbLobbyMatch) {
         const user = userZodSchema.parse(dbUserMatch);
+        const lobby = lobbyZodSchema.parse(dbLobbyMatch);
+
+        const index = lobby.userIDs.findIndex(
+          (userID) => user.userID === userID
+        );
+        const userIDs = lobby.userIDs.toSpliced(index, 1);
+        const members = lobby.members.toSpliced(index, 1);
+        const scores = lobby.scores.toSpliced(index, 1);
+
+        dbLobbyMatch.userIDs = userIDs;
+        dbLobbyMatch.members = members;
+        dbLobbyMatch.scores = scores;
 
         dbUserMatch.code = undefined;
-        dbUserMatch.score = undefined;
         await userRepo.save(dbUserMatch);
+        await lobbyRepo.save(dbLobbyMatch);
 
         app.server?.publish(
           ws.data.query.code,
-          JSON.stringify({ left: user.userName })
+          JSON.stringify({
+            left: { userName: user.userName, userID: user.userID },
+          })
         );
       }
       ws.unsubscribe(ws.data.query.code);
-      // TODO: remove from lobby on db
     },
   })
   .listen(3000);

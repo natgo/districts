@@ -18,7 +18,7 @@ export function MultiSelect() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Multi-player</DialogTitle>
+          <DialogTitle>Multiplayer</DialogTitle>
         </DialogHeader>
         <Tabs defaultValue="join">
           <TabsList className="grid w-full grid-cols-2">
