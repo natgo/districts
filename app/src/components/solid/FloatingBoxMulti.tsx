@@ -170,11 +170,15 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
         <div class={status() ? undefined : "hidden"}>
           <span>Score: {score()}</span>
         </div>
-        <div>
-          Players:
-          <div class="flex flex-wrap justify-around gap-2">
-            <For each={members()} fallback={<div>Waiting...</div>}>
-              {(item) => <div>{item}</div>}
+      <div>
+        Players:
+        <div class="flex w-64 flex-col items-center font-mono">
+          <div class="mt-10 flex flex-wrap justify-center items-center gap-2 text-2xl">
+            <For
+              each={members()}
+              fallback={<div>Waiting...</div>}
+            >
+              {(item) => <div class=" px-2 pb-0.5 rounded-xl bg-black text-sm text-white">{item}</div>}
             </For>
           </div>
         </div>
