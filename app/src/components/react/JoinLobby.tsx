@@ -23,6 +23,8 @@ export function JoinLobby() {
       onSubmit={handleSubmit(async (data) => {
         // TODO: Use real endpoint
         const response = await fetch("http://localhost:3000/api/createUser", {
+          // TODO: remove from prod
+          credentials: "include",
           method: "POST",
           body: JSON.stringify({ userName: data.userName }),
         });

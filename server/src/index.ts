@@ -87,7 +87,7 @@ const app = new Elysia({
   .get("/", () => "Hello Elysia")
   .post(
     "/api/createLobby",
-    ({ cookie: { sessionID }, body }) => {
+    ({ cookie: { sessionID }, body, set }) => {
       const session = crypto.randomUUID();
       const user: UserSchema = {
         userName: body.userName,
@@ -99,7 +99,11 @@ const app = new Elysia({
         httpOnly: true,
         path: "/",
         value: session,
+        // TODO: remove from prod
+        sameSite: "none",
+        secure: true,
       });
+      set.headers["Access-Control-Allow-Credentials"] = "true";
 
       const code = Math.floor(100000 + Math.random() * 900000);
 
@@ -120,7 +124,7 @@ const app = new Elysia({
   )
   .post(
     "/api/createUser",
-    ({ cookie: { sessionID }, body }) => {
+    ({ cookie: { sessionID }, body, set }) => {
       const session = crypto.randomUUID();
       const user: UserSchema = {
         userName: body.userName,
@@ -132,7 +136,11 @@ const app = new Elysia({
         httpOnly: true,
         path: "/",
         value: session,
+        // TODO: remove from prod
+        sameSite: "none",
+        secure: true,
       });
+      set.headers["Access-Control-Allow-Credentials"] = "true";
 
       return "OK";
     },

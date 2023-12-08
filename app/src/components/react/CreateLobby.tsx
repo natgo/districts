@@ -22,6 +22,8 @@ export function CreateLobby() {
       onSubmit={handleSubmit(async (data) => {
         // TODO: Use real endpoint
         const response = await fetch("http://localhost:3000/api/createLobby", {
+          // TODO: remove from prod
+          credentials: "include",
           method: "POST",
           body: JSON.stringify(data),
         });
