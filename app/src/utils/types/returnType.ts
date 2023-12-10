@@ -1,6 +1,10 @@
 import { z } from "zod";
 
-const userZ = z.object({ userName: z.string(), userID: z.string().uuid() });
+const userZ = z.object({
+  userName: z.string(),
+  userID: z.string().uuid(),
+  host: z.literal(true).optional(),
+});
 export type User = z.infer<typeof userZ>;
 
 // Happens on game start
@@ -41,13 +45,7 @@ const nextZ = z.object({
 
 // Happens when time on question runs out
 const timeOverZ = z.object({
-  currentStats: z.array(
-    z.object({
-      userName: z.string(),
-      userID: z.string().uuid(),
-      score: z.number(),
-    }),
-  ),
+  currentStats: z.array(userZ.extend({ score: z.number() })),
 });
 
 // Happens when joining lobby

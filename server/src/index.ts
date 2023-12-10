@@ -37,7 +37,7 @@ async function setDistrict(
 
   await lobbyRepo.save(dbLobbyMatch);
 
-  await delay(20000);
+  await delay(10000);
   const newDBLobbyMatch = await lobbyRepo.fetch(dbLobbyKey);
   const newLobby = lobbyZodSchema.parse(newDBLobbyMatch);
   app.server?.publish(
@@ -186,6 +186,7 @@ const app = new Elysia({
         .where("sessionID")
         .equals(ws.data.cookie.sessionID.get())
         .return.first();
+      const lobby = lobbyZodSchema.parse(dbLobbyMatch);
       if (dbLobbyMatch) {
         const user = userZodSchema.parse(dbUserMatch);
         const members = z.string().array().parse(dbLobbyMatch.members);
@@ -207,14 +208,22 @@ const app = new Elysia({
 
         ws.send({
           members: userIDs.map((userID, index) => {
-            return { userName: members.at(index) ?? "ENONAME", userID: userID };
+            return {
+              userName: members.at(index) ?? "ENONAME",
+              userID: userID,
+              host: lobby.creator === userID ? true : undefined,
+            };
           }),
           you: user.userID,
         });
 
         ws.subscribe(ws.data.query.code);
         ws.publish(ws.data.query.code, {
-          join: { userName: user.userName, userID: user.userID },
+          join: {
+            userName: user.userName,
+            userID: user.userID,
+            host: lobby.creator === user.userID ? true : undefined,
+          },
         });
       }
     },

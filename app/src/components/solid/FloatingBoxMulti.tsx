@@ -70,7 +70,9 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
     }
 
     if ("currentStats" in data) {
+      setMembers(data.currentStats);
       setScore(data.currentStats.find((value) => value.userID === userID())?.score);
+
       if (selected()) {
         const selectedFeature = singleFeature.parse(selected().feature);
         if (selectedFeature.properties.id !== current()?.id) {
@@ -193,8 +195,12 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
             <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-2xl">
               <For each={members()} fallback={<div>Waiting...</div>}>
                 {(item) => (
-                  <div class="rounded-xl bg-black px-2 pb-0.5 text-sm text-white">
-                    {item.userName}
+                  <div
+                    class={`rounded-xl ${
+                      item.host ? "bg-orange-300" : "bg-black"
+                    } px-2 pb-0.5 text-sm text-white`}
+                  >
+                    {item.userName} {"score" in item ? item.score : null}
                   </div>
                 )}
               </For>
