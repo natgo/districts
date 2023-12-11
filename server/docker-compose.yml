@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  server:
+    container_name: kaupunginosat
+    image: "kaupunginosat"
+    ports: ["3000:3000"]
+    links:
+      - "db:redis"
+  db:
+    container_name: redis
+    image: redis/redis-stack-server

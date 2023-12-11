@@ -9,9 +9,9 @@ import {
   userZodSchema,
 } from "./db";
 import { z } from "zod";
-import kaupunginosat from "./kaupunginosat.json";
+import kaupunginosat from "./assets/kaupunginosat.json";
 import shuffle from "./shuffle";
-import { Entity, EntityId } from "redis-om";
+import { EntityId } from "redis-om";
 
 function delay(ms: number) {
   return new Promise((resolve) => {

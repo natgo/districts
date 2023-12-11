@@ -3,7 +3,9 @@ import { Schema } from "redis-om";
 import { Repository } from "redis-om";
 import { z } from "zod";
 
-const redis = createClient();
+const redis = createClient({
+  url: `redis://${process.env.DB_HOST}`,
+});
 redis.on("error", (err) => console.log("Redis Client Error", err));
 await redis.connect();
 
