@@ -9,7 +9,14 @@ import {
   userZodSchema,
 } from "./db";
 import { z } from "zod";
+
 import kaupunginosat from "./assets/kaupunginosat.json";
+import osaalueet from "./assets/osaalueet.json";
+import peruspiirit from "./assets/peruspiirit.json";
+import pienalueet from "./assets/pienalueet.json";
+import postinumerot from "./assets/postinumerot.json";
+import suurpiirit from "./assets/suurpiirit.json";
+
 import shuffle from "./shuffle";
 import { EntityId } from "redis-om";
 
@@ -149,7 +156,16 @@ const app = new Elysia({
     body: t.Union([
       t.Object({ guess: t.Number({ maxLength: 100 }) }),
       // TODO: add ability to use other modes
-      t.Object({ start: t.Literal(true) }),
+      t.Object({
+        start: t.Union([
+          t.Literal("kaupunginosat"),
+          t.Literal("osaalueet"),
+          t.Literal("pienalueet"),
+          t.Literal("peruspiirit"),
+          t.Literal("suurpiirit"),
+          t.Literal("postinumerot"),
+        ]),
+      }),
     ]),
     query: t.Object({ code: t.String() }),
     cookie: t.Cookie({ sessionID: t.String() }),
@@ -245,12 +261,34 @@ const app = new Elysia({
         const user = userZodSchema.parse(dbUserMatch);
         if ("start" in message) {
           if (user.userID === lobby.creator) {
-            const districts = shuffle(
-              kaupunginosat.features.map((value) => value.properties.id)
-            );
+            let districts;
+            switch (message.start) {
+              case "kaupunginosat":
+                districts = shuffle(kaupunginosat.features);
+                break;
+              case "osaalueet":
+                districts = shuffle(osaalueet.features);
+                break;
+              case "peruspiirit":
+                districts = shuffle(peruspiirit.features);
+                break;
+              case "pienalueet":
+                districts = shuffle(pienalueet.features);
+                break;
+              case "postinumerot":
+                districts = shuffle(postinumerot.features);
+                break;
+              case "suurpiirit":
+                districts = shuffle(suurpiirit.features);
+                break;
+            }
 
-            ws.publish(ws.data.query.code, { start: true });
-            gameLoop(ws.data.query.code, dbLobbyMatch[EntityId], districts);
+            ws.publish(ws.data.query.code, { start: message.start });
+            gameLoop(
+              ws.data.query.code,
+              dbLobbyMatch[EntityId]!,
+              districts.map((value) => value.properties.id)
+            );
           }
         } else {
           if (message.guess === lobby.currentDistrict && dbLobbyMatch) {

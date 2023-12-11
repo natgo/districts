@@ -1,7 +1,6 @@
 import topParties from "@/assets/topParties.json";
-import { geo, setCurrent, setFeatures, setGeo, setGuessed, setStatus, setWrong } from "@/store/map";
+import { geo, setCurrent, setFeatures, setGeo, setStatus } from "@/store/map";
 
-import shuffle from "./shuffle";
 import { geoSchema } from "./types/geojson.types";
 import type { Types } from "./types/map.types";
 

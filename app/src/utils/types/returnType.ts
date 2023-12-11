@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { types } from "./map.types";
+
 const userZ = z.object({
   userName: z.string(),
   userID: z.string().uuid(),
@@ -9,7 +11,7 @@ export type User = z.infer<typeof userZ>;
 
 // Happens on game start
 const startZ = z.object({
-  start: z.literal(true),
+  start: types,
 });
 
 // Happens when someone disconnects

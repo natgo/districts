@@ -61,7 +61,7 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
     }
 
     if ("start" in data) {
-      startGame();
+      startGame(data.start);
     }
 
     if ("next" in data) {
@@ -103,12 +103,12 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
   };
 
   const createGame = () => {
-    ws.send(JSON.stringify({ start: true }));
-    startGame();
+    ws.send(JSON.stringify({ start: type() }));
+    startGame(type());
   };
 
-  const startGame = async () => {
-    await createNewGameMulti(type());
+  const startGame = async (type: Types) => {
+    await createNewGameMulti(type);
     geoLayer = L.geoJSON(geo(), {
       style: {
         color: "#0000ff",
@@ -178,7 +178,9 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
             <option value="peruspiirit">Peruspiirit</option>
             <option value="suurpiirit">Suurpiirit</option>
             <option value="postinumerot">Postinumeroalueet</option>
-            <option value="vaalipiirit">Vaalipiirit</option>
+            <option value="vaalipiirit" disabled>
+              Vaalipiirit
+            </option>
           </select>
         </div>
         <CurrentText />
