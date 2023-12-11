@@ -16,7 +16,7 @@ export function FloatingBox(props: { map: Accessor<L.Map | undefined> }) {
   const layerGroup = new L.LayerGroup();
 
   return (
-    <div class="fixed right-0 top-28 z-[1000] m-5 flex w-1/6 flex-col gap-4 rounded-3xl bg-white p-5">
+    <div class="fixed right-0 z-[1000] m-5 flex flex-col gap-4 rounded-3xl bg-white p-5">
       <div class={"flex flex-col items-center gap-2 font-outfit"}>
         <h1 class="mb-4 text-2xl font-bold text-black ">Singleplayer</h1>
         <div class={status() ? "hidden" : "mb-2 block text-sm font-medium text-black"}>
