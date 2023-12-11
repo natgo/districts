@@ -43,13 +43,17 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
     }
 
     if ("join" in data) {
-      setMembers((prev) => [...prev, data.join]);
+      if (!data.join.host) {
+        setMembers((prev) => [...prev, data.join]);
+      }
     }
 
     if ("left" in data) {
       const index = members().findIndex((value) => value.userID === data.left.userID);
-      const member = members().toSpliced(index, 1);
-      setMembers(member);
+      if (index !== -1) {
+        const member = members().toSpliced(index, 1);
+        setMembers(member);
+      }
     }
 
     if ("creator" in data) {
