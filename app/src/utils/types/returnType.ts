@@ -26,7 +26,6 @@ const lockedZ = z.object({
 
 // Happens when someone joins lobby
 const joinZ = z.object({
-  // TODO: add host attribute
   join: userZ,
 });
 

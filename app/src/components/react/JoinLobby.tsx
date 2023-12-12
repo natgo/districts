@@ -22,7 +22,7 @@ export function JoinLobby() {
     <form
       onSubmit={handleSubmit(async (data) => {
         // TODO: Use real endpoint
-        const response = await fetch("http://localhost:3000/api/createUser", {
+        const response = await fetch("https://kaupunginosat.natgo.xyz/api/createUser", {
           // TODO: remove from prod
           credentials: "include",
           method: "POST",

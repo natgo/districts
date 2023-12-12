@@ -10,3 +10,11 @@ services:
   db:
     container_name: redis
     image: redis/redis-stack-server
+  nginx:
+    container_name: districts-nginx
+    image: lscr.io/linuxserver/nginx
+    volumes:
+      - /srv/podman/kaupunginosat/nginx:/config
+    ports: ["3001:80"]
+    links:
+      - "server:kaupunginosat"

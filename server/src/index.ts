@@ -70,7 +70,21 @@ async function gameLoop(
     await delay(3000);
     await setDistrict(lobbyCodeStr, dbLobbyKey, district);
   }
-  console.log("does this log before game or after");
+
+  const finalLobbyMatch = await lobbyRepo.fetch(dbLobbyKey);
+  const finalLobby = lobbyZodSchema.parse(finalLobbyMatch);
+  app.server?.publish(
+    lobbyCodeStr,
+    JSON.stringify({
+      stats: finalLobby.userIDs.map((userID, index) => {
+        return {
+          userID: userID,
+          userName: finalLobby.members.at(index) ?? "ENONAME",
+          score: finalLobby.scores.at(index) ?? 0,
+        };
+      }),
+    })
+  );
 }
 
 const app = new Elysia({
@@ -155,7 +169,7 @@ const app = new Elysia({
   .ws("/api/ws", {
     body: t.Union([
       t.Object({ guess: t.Number({ maxLength: 100 }) }),
-      // TODO: add ability to use other modes
+
       t.Object({
         start: t.Union([
           t.Literal("kaupunginosat"),

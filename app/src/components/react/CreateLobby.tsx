@@ -21,7 +21,7 @@ export function CreateLobby() {
     <form
       onSubmit={handleSubmit(async (data) => {
         // TODO: Use real endpoint
-        const response = await fetch("http://localhost:3000/api/createLobby", {
+        const response = await fetch("https://kaupunginosat.natgo.xyz/api/createLobby", {
           // TODO: remove from prod
           credentials: "include",
           method: "POST",

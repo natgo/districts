@@ -2,7 +2,7 @@
 import { type Accessor, For, createSignal } from "solid-js";
 
 import CurrentText from "@/components/solid/CurrentText";
-import { current, geo, setCurrent, status } from "@/store/map";
+import { current, geo, setCurrent, setWin, status } from "@/store/map";
 import {
   corrects,
   host,
@@ -31,20 +31,24 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
   const layerGroup = new L.LayerGroup();
 
   const url = new URL(location.href);
-  const ws = createWS("ws://localhost:3000/api/ws" + url.search);
+  const ws = createWS("wss://kaupunginosat.natgo.xyz/api/ws" + url.search);
   ws.addEventListener("message", (event) => parseWSEvent(event.data));
 
   const parseWSEvent = (event: string) => {
     const data = WSReturnType.parse(JSON.parse(event));
 
     if ("members" in data) {
-      setMembers(data.members);
+      setMembers(
+        data.members.map((val) => {
+          return { ...val, score: 0 };
+        }),
+      );
       setUserID(data.you);
     }
 
     if ("join" in data) {
       if (!data.join.host) {
-        setMembers((prev) => [...prev, data.join]);
+        setMembers((prev) => [...prev, { ...data.join, score: 0 }]);
       }
     }
 
@@ -97,6 +101,26 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
           });
         }
       });
+    }
+
+    if ("stats" in data) {
+      const sortedScore = data.stats.toSorted((a, b) => b.score - a.score);
+      setMembers(sortedScore);
+      if (userID() === sortedScore.at(0)?.userID) {
+        setWin(true);
+      } else {
+        setCurrent({
+          id: 0,
+          kunta: "",
+          tunnus: "",
+          yhtluontipvm: "",
+          yhtdatanomistaja: "",
+          paivitetty_tietopalveluun: "",
+          aluejako: "KAUPUNGINOSA",
+          nimi_fi: "Game over",
+          nimi_se: "",
+        });
+      }
     }
 
     return data;
@@ -154,8 +178,11 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
 
   return (
     <div class="fixed right-0 z-[1000] m-5 flex flex-col gap-4 rounded-3xl bg-white p-5">
-      <div class={"flex flex-col items-center gap-2 font-outfit"}>
+      <div class="flex flex-col items-center gap-2 font-outfit">
         <h1 class="mb-4 text-2xl font-bold text-black">Multiplayer</h1>
+        <div class={status() ? "hidden" : "mb-2 block text-2xl font-bold text-black"}>
+          Code: {url.searchParams.get("code")}
+        </div>
         <div class={status() ? "hidden" : "mb-2 block text-sm font-medium text-black"}>
           {host() ? "Select game mode" : "Waiting host to start"}
         </div>
@@ -199,16 +226,25 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
           Players:
           <div class="flex w-64 flex-col items-center font-mono">
             <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-2xl">
-              <For each={members()} fallback={<div>Waiting...</div>}>
-                {(item) => (
-                  <div
-                    class={`rounded-xl ${
-                      item.host ? "bg-orange-300" : "bg-black"
-                    } px-2 pb-0.5 text-sm text-white`}
-                  >
-                    {item.userName} {"score" in item ? item.score : null}
-                  </div>
-                )}
+              <For
+                each={members().toSorted((a, b) => b.score - a.score)}
+                fallback={<div>Waiting...</div>}
+              >
+                {(item) => {
+                  return (
+                    <div
+                      class={`rounded-xl ${
+                        item.host
+                          ? "bg-orange-300"
+                          : item.userID === userID()
+                            ? "bg-emerald-500"
+                            : "bg-black"
+                      } px-2 pb-0.5 text-sm text-white`}
+                    >
+                      {item.userName} {item.score !== 0 ? item.score : null}
+                    </div>
+                  );
+                }}
               </For>
             </div>
           </div>
