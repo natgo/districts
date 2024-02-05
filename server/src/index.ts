@@ -110,11 +110,9 @@ const app = new Elysia({
         httpOnly: true,
         path: "/",
         value: session,
-        // TODO: remove from prod
-        sameSite: "none",
+        sameSite: "strict",
         secure: true,
       });
-      set.headers["Access-Control-Allow-Credentials"] = "true";
 
       const code = Math.floor(100000 + Math.random() * 900000);
 
@@ -151,11 +149,9 @@ const app = new Elysia({
         httpOnly: true,
         path: "/",
         value: session,
-        // TODO: remove from prod
-        sameSite: "none",
+        sameSite: "strict",
         secure: true,
       });
-      set.headers["Access-Control-Allow-Credentials"] = "true";
 
       return "OK";
     },

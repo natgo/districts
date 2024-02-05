@@ -18,5 +18,15 @@ export default defineConfig({
       include: ["**/solid/**"],
     }),
   ],
-  vite: { plugins: [visualizer({ gzipSize: true, brotliSize: true })] },
+  vite: {
+    server: {
+      proxy: {
+        "/api": {
+          target: "http://localhost:3000",
+          changeOrigin: true,
+        },
+      },
+    },
+    plugins: [visualizer({ gzipSize: true, brotliSize: true })],
+  },
 });

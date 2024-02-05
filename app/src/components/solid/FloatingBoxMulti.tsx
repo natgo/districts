@@ -31,7 +31,7 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
   const layerGroup = new L.LayerGroup();
 
   const url = new URL(location.href);
-  const ws = createWS("wss://kaupunginosat.natgo.xyz/api/ws" + url.search);
+  const ws = createWS(import.meta.env.PUBLIC_WS_URL + url.search);
   ws.addEventListener("message", (event) => parseWSEvent(event.data));
 
   const parseWSEvent = (event: string) => {

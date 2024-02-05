@@ -24,3 +24,5 @@ gitignore
 Thumbs.db
 
 stats.html
+.env*
+!.env*.example
