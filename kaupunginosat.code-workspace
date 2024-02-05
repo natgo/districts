@@ -14,6 +14,7 @@
     "terminal.integrated.shellIntegration.enabled": true,
     "typescript.updateImportsOnFileMove.enabled": "always",
     "files.eol": "\n",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "conventionalCommits.scopes": ["deps", "server", "app", "data"]
   }
 }
