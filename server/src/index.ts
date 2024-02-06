@@ -19,12 +19,7 @@ import suurpiirit from "./assets/suurpiirit.json";
 
 import shuffle from "./shuffle";
 import { EntityId } from "redis-om";
-
-function delay(ms: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
+import { delay } from "./delay";
 
 async function setDistrict(
   lobbyCodeStr: string,
@@ -45,16 +40,17 @@ async function setDistrict(
   await lobbyRepo.save(dbLobbyMatch);
 
   await delay(10000);
-  const newDBLobbyMatch = await lobbyRepo.fetch(dbLobbyKey);
-  const newLobby = lobbyZodSchema.parse(newDBLobbyMatch);
+  const freshDBLobbyMatch = await lobbyRepo.fetch(dbLobbyKey);
+  const freshLobby = lobbyZodSchema.parse(freshDBLobbyMatch);
   app.server?.publish(
     lobbyCodeStr,
     JSON.stringify({
-      currentStats: newLobby.userIDs.map((userID, index) => {
+      currentStats: freshLobby.userIDs.map((userID, index) => {
         return {
           userID: userID,
-          userName: newLobby.members.at(index) ?? "ENONAME",
-          score: newLobby.scores.at(index) ?? 0,
+          userName: freshLobby.members.at(index) ?? "ENONAME",
+          score: freshLobby.scores.at(index) ?? 0,
+          host: lobby.creator === userID ? true : undefined,
         };
       }),
     })
@@ -93,7 +89,6 @@ const app = new Elysia({
   },
 })
   .use(defaults)
-  .get("/", () => "Hello Elysia")
   .post(
     "/api/createLobby",
     ({ cookie: { sessionID }, body, set }) => {
@@ -218,19 +213,20 @@ const app = new Elysia({
         const members = z.string().array().parse(dbLobbyMatch.members);
         const userIDs = z.string().uuid().array().parse(dbLobbyMatch.userIDs);
         const scores = z.number().array().parse(dbLobbyMatch.scores);
-        if (dbLobbyMatch.creator !== user.userID) {
-          // TODO: don't push multiple of the same session
-          members.push(user.userName);
-          userIDs.push(user.userID);
-          scores.push(0);
-          dbLobbyMatch.members = members;
-          dbLobbyMatch.userIDs = userIDs;
-          dbLobbyMatch.scores = scores;
 
-          await lobbyRepo.save(dbLobbyMatch);
-        } else {
+        if (dbLobbyMatch.creator === user.userID) {
           ws.send({ creator: true });
         }
+
+        // TODO: don't push multiple of the same session
+        members.push(user.userName);
+        userIDs.push(user.userID);
+        scores.push(0);
+        dbLobbyMatch.members = members;
+        dbLobbyMatch.userIDs = userIDs;
+        dbLobbyMatch.scores = scores;
+
+        await lobbyRepo.save(dbLobbyMatch);
 
         ws.send({
           members: userIDs.map((userID, index) => {
@@ -301,12 +297,16 @@ const app = new Elysia({
             );
           }
         } else {
-          if (message.guess === lobby.currentDistrict && dbLobbyMatch) {
+          if (
+            message.guess === lobby.currentDistrict &&
+            dbLobbyMatch &&
+            dbLobbyMatch.scores
+          ) {
             const index = lobby.userIDs.findIndex(
               (userID) => user.userID === userID
             );
 
-            dbLobbyMatch.scores[index]++;
+            dbLobbyMatch.scores[index] += 100;
 
             await lobbyRepo.save(dbLobbyMatch);
           }

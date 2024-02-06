@@ -145,9 +145,9 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
     layerGroup.addTo(props.map());
 
     geoLayer.eachLayer((layer) => {
-      if (host()) {
-        return;
-      }
+      // if (host()) {
+      //   return;
+      // }
 
       layer.on("click", (event) => {
         const clickedLayerFeature = singleFeature.parse(event.target.feature);
