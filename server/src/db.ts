@@ -25,21 +25,23 @@ export const userZodSchema = z.object({
 export type UserSchema = z.infer<typeof userZodSchema>;
 
 const lobbyRedisSchema = new Schema("lobby", {
-  code: { type: "number" },
+  code: { type: "string" },
   creator: { type: "string" }, // userID
   members: { type: "string[]" }, // userName
   userIDs: { type: "string[]" }, // userID
   scores: { type: "number[]" },
   currentDistrict: { type: "number" },
+  currentTimestamp: { type: "number" },
 });
 
 export const lobbyZodSchema = z.object({
-  code: z.number(),
+  code: z.string().length(6),
   creator: z.string().uuid(),
   members: z.string().array(),
   userIDs: z.string().uuid().array(),
   scores: z.number().array(),
   currentDistrict: z.number().optional(),
+  currentTimestamp: z.number().optional(),
 });
 export type LobbySchema = z.infer<typeof lobbyZodSchema>;
 

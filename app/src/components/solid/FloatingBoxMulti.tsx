@@ -219,8 +219,8 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
         >
           Start game
         </button>
-        <div class={!status() || host() ? "hidden" : undefined}>
-          <span>Score: {score()}</span>
+        <div class={!status() ? "hidden" : undefined}>
+          <span>Score: {score()?.toFixed(2)}</span>
         </div>
         <div>
           Players:
@@ -241,7 +241,7 @@ export function FloatingBoxMulti(props: { map: Accessor<L.Map | undefined> }) {
                             : "bg-black"
                       } px-2 pb-0.5 text-sm text-white`}
                     >
-                      {item.userName} {item.score !== 0 ? item.score : null}
+                      {item.userName} {item.score !== 0 ? item.score.toFixed(2) : null}
                     </div>
                   );
                 }}

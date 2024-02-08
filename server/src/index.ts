@@ -19,71 +19,9 @@ import suurpiirit from "./assets/suurpiirit.json";
 
 import shuffle from "./shuffle";
 import { EntityId } from "redis-om";
-import { delay } from "./delay";
+import { gameLoop } from "./game";
 
-async function setDistrict(
-  lobbyCodeStr: string,
-  dbLobbyKey: string,
-  district: number
-) {
-  app.server?.publish(
-    lobbyCodeStr,
-    JSON.stringify({
-      next: district,
-    })
-  );
-  const dbLobbyMatch = await lobbyRepo.fetch(dbLobbyKey);
-  const lobby = lobbyZodSchema.parse(dbLobbyMatch);
-
-  dbLobbyMatch.currentDistrict = district;
-
-  await lobbyRepo.save(dbLobbyMatch);
-
-  await delay(10000);
-  const freshDBLobbyMatch = await lobbyRepo.fetch(dbLobbyKey);
-  const freshLobby = lobbyZodSchema.parse(freshDBLobbyMatch);
-  app.server?.publish(
-    lobbyCodeStr,
-    JSON.stringify({
-      currentStats: freshLobby.userIDs.map((userID, index) => {
-        return {
-          userID: userID,
-          userName: freshLobby.members.at(index) ?? "ENONAME",
-          score: freshLobby.scores.at(index) ?? 0,
-          host: lobby.creator === userID ? true : undefined,
-        };
-      }),
-    })
-  );
-}
-
-async function gameLoop(
-  lobbyCodeStr: string,
-  dbLobbyKey: string,
-  districts: number[]
-) {
-  for (const district of districts) {
-    await delay(3000);
-    await setDistrict(lobbyCodeStr, dbLobbyKey, district);
-  }
-
-  const finalLobbyMatch = await lobbyRepo.fetch(dbLobbyKey);
-  const finalLobby = lobbyZodSchema.parse(finalLobbyMatch);
-  app.server?.publish(
-    lobbyCodeStr,
-    JSON.stringify({
-      stats: finalLobby.userIDs.map((userID, index) => {
-        return {
-          userID: userID,
-          userName: finalLobby.members.at(index) ?? "ENONAME",
-          score: finalLobby.scores.at(index) ?? 0,
-        };
-      }),
-    })
-  );
-}
-
-const app = new Elysia({
+export const app = new Elysia({
   websocket: {
     idleTimeout: 30,
   },
@@ -109,8 +47,10 @@ const app = new Elysia({
         secure: true,
       });
 
-      const code = Math.floor(100000 + Math.random() * 900000);
-
+      const code = crypto
+        .getRandomValues(new Uint16Array(6))
+        .join("")
+        .slice(-6);
       const lobby: LobbySchema = {
         code: code,
         creator: userID,
@@ -300,13 +240,15 @@ const app = new Elysia({
           if (
             message.guess === lobby.currentDistrict &&
             dbLobbyMatch &&
-            dbLobbyMatch.scores
+            dbLobbyMatch.scores &&
+            lobby.currentTimestamp
           ) {
             const index = lobby.userIDs.findIndex(
               (userID) => user.userID === userID
             );
 
-            dbLobbyMatch.scores[index] += 100;
+            dbLobbyMatch.scores[index] +=
+              -0.01 * (Date.now() - lobby.currentTimestamp) + 100;
 
             await lobbyRepo.save(dbLobbyMatch);
           }
