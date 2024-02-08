@@ -158,15 +158,16 @@ export const app = new Elysia({
           ws.send({ creator: true });
         }
 
-        // TODO: don't push multiple of the same session
-        members.push(user.userName);
-        userIDs.push(user.userID);
-        scores.push(0);
-        dbLobbyMatch.members = members;
-        dbLobbyMatch.userIDs = userIDs;
-        dbLobbyMatch.scores = scores;
+        if (!userIDs.find((value) => user.userID === value)) {
+          members.push(user.userName);
+          userIDs.push(user.userID);
+          scores.push(0);
+          dbLobbyMatch.members = members;
+          dbLobbyMatch.userIDs = userIDs;
+          dbLobbyMatch.scores = scores;
 
-        await lobbyRepo.save(dbLobbyMatch);
+          await lobbyRepo.save(dbLobbyMatch);
+        }
 
         ws.send({
           members: userIDs.map((userID, index) => {
